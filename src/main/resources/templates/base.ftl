@@ -5,6 +5,8 @@
 <#macro page_head>
     <@common_page_head/>
     <title>Fryzjer Online</title>
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script src="js/main.js"></script>
 </#macro>
 
 <#macro page_body>
@@ -20,7 +22,7 @@
 </#macro>
 
 <#macro page_footer>
-    <div style="position:absolute;bottom:0px;left:0px;width:100%">
+    <div class="footer">
         <hr>
         <h4>stopka</h4>
     </div>
