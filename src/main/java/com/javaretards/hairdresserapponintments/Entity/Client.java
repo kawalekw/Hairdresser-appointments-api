@@ -1,4 +1,4 @@
-package Entity;
+package com.javaretards.hairdresserapponintments.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

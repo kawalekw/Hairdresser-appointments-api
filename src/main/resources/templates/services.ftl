@@ -3,7 +3,7 @@
 <#macro page_body>
     <ul>
         <#list services as service>
-            <li>${service.name} - ${service.duration}min</li>
+            <li>${service.id} - ${service.name} - ${service.duration}min</li>
         </#list>
     </ul>
 </#macro>

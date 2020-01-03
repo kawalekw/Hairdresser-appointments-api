@@ -1,31 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Entity;
+package com.javaretards.hairdresserapponintments.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author mateusz
  */
 @Entity
-public class Service {
+@NoArgsConstructor
+public class ServiceOption {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
     private Long id;
     @Getter
     private String name;
     @Getter
     private int duration;
     
-    public Service(String name, int duration){
+    public ServiceOption(String name, int duration){
         this.name=name;
         this.duration=duration;
     }
