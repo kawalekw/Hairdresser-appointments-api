@@ -14,8 +14,7 @@ public class HelloController {
     
     @GetMapping({"/","/hello"})
     public String helloAction(Model model){
-        String name="Janusz";
-        Client user = new Client("Mateusz","123456789");
+        Client user = new Client("User","123456789");
         model.addAttribute("user", user);
         return "hello";
     }
