@@ -17,6 +17,6 @@ public class RestConfigController {
     
     @GetMapping("/api/services")
     public Iterable<ServiceOption> getAllServices(){
-        return sr.findAll();
+        return sr.findByDeletedFalse();
     }
 }

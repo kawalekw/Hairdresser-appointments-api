@@ -16,7 +16,7 @@
 
 <#macro page_navbar>
     <h2>
-        <a href="/">Home</a> - <a href="/config/services">Usługi</a>
+        Fryzjer Online - <a href="/">Home</a> 
     </h2>
     <hr>
 </#macro>
@@ -24,7 +24,7 @@
 <#macro page_footer>
     <div class="footer">
         <hr>
-        <h4>stopka</h4>
+        <h4>stopka <a href="/dashboard">Dashboard</a></h4>
     </div>
 </#macro>
 

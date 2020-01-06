@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
@@ -22,9 +23,13 @@ public class ServiceOption {
     private String name;
     @Getter
     private int duration;
+    @Getter
+    @Setter
+    private boolean deleted;
     
     public ServiceOption(String name, int duration){
         this.name=name;
         this.duration=duration;
+        this.deleted=false;
     }
 }
