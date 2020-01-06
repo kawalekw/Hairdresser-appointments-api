@@ -27,6 +27,12 @@ public class OpenHours {
         appliesFrom = LocalDate.now();
     }
     
+    public OpenHours(LocalDate date){
+        openFrom = new int[]{0,540,540,540,540,540,0};
+        openTo = new int[]{0,1020,1020,1020,1020,1020,0};
+        appliesFrom = date;
+    }
+    
     public void setDay(int day, int from, int to){
         if(day<7 && day>=0){ 
             openFrom[day]=from;

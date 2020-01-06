@@ -1,1 +1,1 @@
-# hairdresser-appointmnets
+# System rejestracji do zakładu fryzjerskiego

@@ -4,6 +4,7 @@ import com.javaretards.hairdresserapponintments.Entity.OpenHours;
 import com.javaretards.hairdresserapponintments.Entity.ServiceOption;
 import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
+import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -22,7 +23,7 @@ public class DataLoader implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
         if(ohr.count()==0){
-            ohr.save(new OpenHours());
+            ohr.save(new OpenHours(LocalDate.parse("2000-01-01")));
         }
         if(sr.count()==0){
             sr.save(new ServiceOption("Strzyżenie męskie",15));

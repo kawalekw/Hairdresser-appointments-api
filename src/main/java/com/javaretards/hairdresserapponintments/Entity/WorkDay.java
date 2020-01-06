@@ -1,11 +1,10 @@
 package com.javaretards.hairdresserapponintments.Entity;
 
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
@@ -14,19 +13,14 @@ import lombok.NoArgsConstructor;
  */
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
-public class Client {
+public class WorkDay {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Getter
-    private String name;
-    @Getter
-    private String phone;
-    private boolean blocked;
+    private Long id;
+    private LocalDate date;
+    private int openFrom;
+    private int openTo;
+    //private List<Appointment> appointments;
     
-    public Client(String name, String phone){
-        this(0, name, phone, false);
-    }
-        
 }
