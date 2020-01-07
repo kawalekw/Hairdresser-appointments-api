@@ -29,6 +29,7 @@
        <ul>
            <li><a href="/config/services">Usługi</a></li>
            <li><a href="/config/openhours">Godziny otwarcia</a></li>
+           <li><a href="/config/clients">Klienci</a></li>
         </ul
     </div>
 </#macro>
