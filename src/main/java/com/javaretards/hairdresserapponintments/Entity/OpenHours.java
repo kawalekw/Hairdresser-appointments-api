@@ -14,14 +14,13 @@ import javax.persistence.Id;
 @Entity
 public class OpenHours {
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private int[] openFrom = new int[7];
     private int[] openTo = new int[7];
     @Column(unique=true)
     private LocalDate appliesFrom;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     
     public OpenHours(){
         openFrom = new int[]{0,540,540,540,540,540,0};

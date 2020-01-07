@@ -7,7 +7,14 @@
         <#list week as day>
             <li>
                 ${day.date} ${day.date.dayOfWeek}<br>
-                ${day.fromTo}                
+                ${day.fromTo}   
+                <#if day.appointments??>
+                <ul>
+                    <#list day.appointments as app>
+                        <li>${app.fromTo} - ${app.name} - ${app.service.name}</li>
+                    </#list>
+                </ul>
+                </#if>
             </li>
         </#list>
     </ul>

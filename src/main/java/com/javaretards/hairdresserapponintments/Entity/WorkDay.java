@@ -1,11 +1,14 @@
 package com.javaretards.hairdresserapponintments.Entity;
 
 import java.time.LocalDate;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -25,7 +28,8 @@ public class WorkDay {
     private LocalDate date;
     private int openFrom;
     private int openTo;
-    //private List<Appointment> appointments;
+    @OneToMany(mappedBy = "day", fetch = FetchType.EAGER)
+    private List<Appointment> appointments;
 
     public WorkDay(LocalDate date, int openFrom, int openTo) {
         this.date = date;

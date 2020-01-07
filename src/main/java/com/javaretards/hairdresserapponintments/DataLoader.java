@@ -1,11 +1,15 @@
 package com.javaretards.hairdresserapponintments;
 
+import com.javaretards.hairdresserapponintments.Entity.Appointment;
 import com.javaretards.hairdresserapponintments.Entity.Client;
 import com.javaretards.hairdresserapponintments.Entity.OpenHours;
 import com.javaretards.hairdresserapponintments.Entity.ServiceOption;
+import com.javaretards.hairdresserapponintments.Entity.WorkDay;
+import com.javaretards.hairdresserapponintments.Repository.AppointmentRepository;
 import com.javaretards.hairdresserapponintments.Repository.ClientRepository;
 import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
+import com.javaretards.hairdresserapponintments.Repository.WorkDayRepository;
 import java.time.LocalDate;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +29,10 @@ public class DataLoader implements ApplicationRunner{
     ServiceRepository sr;
     @Autowired
     ClientRepository cr;
+    @Autowired
+    WorkDayRepository wdr;
+    @Autowired
+    AppointmentRepository ar;
     
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -40,6 +48,11 @@ public class DataLoader implements ApplicationRunner{
         if(!cr.findByPhone("0").isPresent()){
             cr.save(new Client(0,"0",false)); //default client
         }
+        if(wdr.count()==0){
+            WorkDay dDay = new WorkDay(LocalDate.parse("2020-01-01"),800,1000);
+            wdr.save(dDay);
+            ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(1l).get(),820,"Janusz Kowalski",dDay));
+        }
+        
     }
-    
 }
