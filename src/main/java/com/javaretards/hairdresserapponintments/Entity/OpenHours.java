@@ -1,6 +1,7 @@
 package com.javaretards.hairdresserapponintments.Entity;
 
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +16,7 @@ public class OpenHours {
     
     private int[] openFrom = new int[7];
     private int[] openTo = new int[7];
+    @Column(unique=true)
     private LocalDate appliesFrom;
     
     @Id
@@ -32,6 +34,13 @@ public class OpenHours {
         openTo = new int[]{0,1020,1020,1020,1020,1020,0};
         appliesFrom = date;
     }
+    
+    public OpenHours(LocalDate date, int open, int close){
+        openFrom = new int[]{open,open,open,open,open,open,open};
+        openTo = new int[]{close,close,close,close,close,close,close};
+        appliesFrom = date;
+    }
+    
     
     public void setDay(int day, int from, int to){
         if(day<7 && day>=0){ 

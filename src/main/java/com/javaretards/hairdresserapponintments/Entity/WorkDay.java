@@ -1,10 +1,12 @@
 package com.javaretards.hairdresserapponintments.Entity;
 
 import java.time.LocalDate;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
@@ -13,14 +15,32 @@ import lombok.NoArgsConstructor;
  */
 @Entity
 @NoArgsConstructor
+@Getter
 public class WorkDay {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(unique=true)
     private LocalDate date;
     private int openFrom;
     private int openTo;
     //private List<Appointment> appointments;
+
+    public WorkDay(LocalDate date, int openFrom, int openTo) {
+        this.date = date;
+        this.openFrom = openFrom;
+        this.openTo = openTo;
+    }
+    
+    public String getFromTo(){
+        if(openFrom<openTo)
+            return minToHours(openFrom)+" - "+minToHours(openTo);
+        return "zamknięte";
+    }
+    
+    private String minToHours(int min){
+        return String.valueOf((int)(min/60))+":"+String.format("%02d",min%60);
+    }
     
 }

@@ -1,5 +1,6 @@
 package com.javaretards.hairdresserapponintments.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,13 +21,12 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Getter
-    private String name;
-    @Getter
+    @Column(unique=true)
     private String phone;
+    @Getter
     private boolean blocked;
     
-    public Client(String name, String phone){
-        this(0, name, phone, false);
+    public void block(){
+        this.blocked=true;
     }
-        
 }

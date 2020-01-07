@@ -32,7 +32,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers("/config/**","/dashboard/**").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login").permitAll();
         
-        //http.csrf().disable(); //uncomment to acces /h2-console
-        //http.headers().frameOptions().disable();
+        //http.csrf().disable(); http.headers().frameOptions().disable(); //uncomment to acces /h2-console
     }
 }

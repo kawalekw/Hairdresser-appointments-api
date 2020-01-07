@@ -3,8 +3,9 @@ package com.javaretards.hairdresserapponintments.Controller;
 import com.javaretards.hairdresserapponintments.Entity.ServiceOption;
 import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
+import java.time.LocalDate;
 import java.util.Optional;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,11 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author mateusz
  */
 @Controller
-@AllArgsConstructor
 @RequestMapping("/config")
 public class ConfigController {
-    private final ServiceRepository sr;
-    private final OpenHoursRepositiory ohr;
+    
+    @Autowired
+    ServiceRepository sr;
+    @Autowired
+    OpenHoursRepositiory ohr;
     
     @RequestMapping(value = "/services", method = RequestMethod.GET)
     public String viewServicesAction(Model model){
@@ -48,7 +51,7 @@ public class ConfigController {
     
     @RequestMapping(value = "/openhours", method = RequestMethod.GET)
     public String changeopenHoursAction(Model model){
-        model.addAttribute("openhours", ohr.findById(1l).get());
+        model.addAttribute("openhours", ohr.findFirstByAppliesFromBeforeOrderByAppliesFromDesc(LocalDate.now().plusDays(1)).get());
         return "openhours";
     }
 }
