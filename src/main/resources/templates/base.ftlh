@@ -24,7 +24,7 @@
 <#macro page_footer>
     <div class="footer">
         <hr>
-        <h4>stopka <a href="/dashboard">Dashboard</a></h4>
+        <h4>stopka <a href="/dashboard">Dashboard XD</a></h4>
     </div>
 </#macro>
 
