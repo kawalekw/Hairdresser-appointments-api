@@ -1,7 +1,12 @@
 <#include "base.ftlh">
 
 <#macro page_body>
+<<<<<<< HEAD
+<div class="container-fluid text-center text-md-left">
+    <h1>Godziny otwarcia <a href="">Edytuj</a></h1>
+=======
     <h2>Lista definicji</h2>
+>>>>>>> master
     <ul>
         <#list definitions as def>
             <li>${def.appliesFrom} <a href="/config/openhours/${def.appliesFrom}">Wczytaj</a> <#if (def.id>2)><a href="/config/openhours/del/${def.id}">Usuń</a></#if></li>
@@ -19,6 +24,7 @@
         <li>Sobota: ${openhours.fromTo(6)}</li>
     </ul>
     Obowiązuje od: ${openhours.appliesFrom}
+</div>
 </#macro>
 
 <@display_page/>

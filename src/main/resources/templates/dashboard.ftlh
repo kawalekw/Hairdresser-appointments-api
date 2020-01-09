@@ -1,6 +1,7 @@
 <#include "base.ftlh">
 
 <#macro page_body>
+<div class="container-fluid text-center text-md-left">
     <h1>Dashboard</h1>
     <ul>
         <#list week as day>
@@ -65,6 +66,7 @@
            <li><a href="/config/clients">Klienci</a></li>
         </ul
     </div>
+</div>
 </#macro>
 
 <@display_page/>
