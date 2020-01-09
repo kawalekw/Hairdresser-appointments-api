@@ -1,6 +1,7 @@
 <#include "base.ftlh">
 
 <#macro page_body>
+<div class="container-fluid text-center text-md-left">
     <h1>Dashboard</h1>
     <div>Tu będzię się wyświetlać robota na przyszły tydzień</div>
     <ul>
@@ -31,6 +32,7 @@
            <li><a href="/config/openhours">Godziny otwarcia</a></li>
         </ul
     </div>
+</div>
 </#macro>
 
 <@display_page/>

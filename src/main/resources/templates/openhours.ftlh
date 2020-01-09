@@ -1,6 +1,7 @@
 <#include "base.ftlh">
 
 <#macro page_body>
+<div class="container-fluid text-center text-md-left">
     <h1>Godziny otwarcia <a href="">Edytuj</a></h1>
     <ul>
         <li>Poniedziałek: ${openhours.fromTo(1)}</li>
@@ -12,6 +13,7 @@
         <li>Niedziela: ${openhours.fromTo(0)}</li>
     </ul>
     Obowiązuje od: ${openhours.appliesFrom}
+</div>
 </#macro>
 
 <@display_page/>

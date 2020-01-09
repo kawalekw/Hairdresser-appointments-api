@@ -1,6 +1,7 @@
 <#include "base.ftlh">
 
 <#macro page_body>
+<div class="container-fluid text-center text-md-left">
     <div>
         Dodaj nową usługę
         <form action="/config/services" method="POST">
@@ -17,6 +18,7 @@
             </#list>
         </ul>
     </div>
+</div>
 </#macro>
 
 <@display_page/>

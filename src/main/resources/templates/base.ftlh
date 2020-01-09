@@ -5,8 +5,10 @@
 <#macro page_head>
     <@common_page_head/>
     <title>Fryzjer Online</title>
-    <link href="/css/main.css" rel="stylesheet" type="text/css">
-    <script src="/js/main.js"></script>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="/js/jquery-3.0.0.slim.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </#macro>
 
 <#macro page_body>
@@ -15,17 +17,32 @@
 </#macro>
 
 <#macro page_navbar>
-    <h2>
-        Fryzjer Online - <a href="/">Home</a> 
-    </h2>
-    <hr>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    
+        <div class-"collapse navbar-collapse">
+        
+        <ul class=navbar-nav mr-auto mt-2 mt-lg-0">
+        <div class="navbar-brand">Fryzjer Online</div>
+        <li class="nav-item"> 
+            <a class="nav-link" href="/">Home</a> 
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+        </li>
+        </ul>
+    
+</nav>
 </#macro>
 
 <#macro page_footer>
-    <div class="footer">
-        <hr>
-        <h4>stopka <a href="/dashboard">Dashboard XDXD</a></h4>
+<footer class="page-footer font-small navbar-light pt-4">
+    <div class="container-fluid text-center text-md-left">
+        <h4 class="text-uppercase">
+        stopka 
+        <a href="/dashboard">Dashboard</a>
+        </h4>
     </div>
+</footer>
 </#macro>
 
 <#macro display_page>
