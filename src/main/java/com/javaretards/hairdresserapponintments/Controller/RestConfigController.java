@@ -36,12 +36,11 @@ public class RestConfigController {
     public Iterable<ServiceOption> getAllServices(){
         return sr.findByDeletedFalse();
     }
-    @GetMapping("/api/schedule/{date}/{duration}")
-    public Iterable<String> getScehuleOptionsAction(@PathVariable("date") String datestr,@PathVariable("duration") int duration){
+    
+    @GetMapping(value = {"/api/schedule/{date}","/api/schedule/{date}/{duration}"})
+    public Iterable<String> getScehuleOptionsAction(@PathVariable("date") String datestr,@PathVariable(value="duration", required = false) Integer duration){
         List<String> options = new ArrayList<>();
-        List<Integer> minutes;
         LocalDate date;
-        
         try{
             date = LocalDate.parse(datestr);
         }
@@ -59,18 +58,18 @@ public class RestConfigController {
         }
         if(wd.getOpenFrom()>=wd.getOpenTo())
             return options;
-        
-        Stream<Integer> minStream = IntStream.rangeClosed(wd.getOpenFrom(), wd.getOpenTo()).boxed();
+        Stream<Integer> minStream = IntStream.rangeClosed(wd.getOpenFrom(), wd.getOpenTo()).filter(i -> i%5==0).boxed();
         if(wd.getAppointments()!=null){
             for(Appointment ap : wd.getAppointments()){
-                //minStream.filter(i -> i>ap.getStartsAt());
+                if(duration==null)
+                    minStream=minStream.filter(i -> (i<=ap.getStartsAt() || i>=ap.getEndsAt()));
+                else
+                    minStream=minStream.filter(i -> (i<=ap.getStartsAt()-duration || i>=ap.getEndsAt()));
             }
         }
-        
-        minutes=minStream.collect(Collectors.toList());
-        for(int i : minutes){
-            options.add(minToHours(i));
-        }
+        if(duration!=null)
+            minStream=minStream.filter(i -> i <= wd.getOpenTo()-duration);
+        options = minStream.map(i -> minToHours(i)).collect(Collectors.toList());
         return options;
     }
     

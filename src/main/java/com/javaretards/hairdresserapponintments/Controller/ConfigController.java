@@ -3,6 +3,7 @@ package com.javaretards.hairdresserapponintments.Controller;
 import com.javaretards.hairdresserapponintments.Entity.Client;
 import com.javaretards.hairdresserapponintments.Entity.OpenHours;
 import com.javaretards.hairdresserapponintments.Entity.ServiceOption;
+import com.javaretards.hairdresserapponintments.Entity.WorkDay;
 import com.javaretards.hairdresserapponintments.Repository.ClientRepository;
 import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
@@ -122,5 +123,18 @@ public class ConfigController {
             cr.save(cl);
         }
         return "redirect:/config/clients";
+    }
+    
+    @RequestMapping("/day/{datestr}")
+    public String dayAction(Model model, @PathVariable("datestr") String datestr){
+        LocalDate date;
+        try{
+            date = LocalDate.parse(datestr);
+        }
+        catch(java.lang.NullPointerException | java.time.format.DateTimeParseException e){
+            date = LocalDate.now();
+        }
+        model.addAttribute("day", new WorkDay(date,600,1200));
+        return "day";
     }
 }

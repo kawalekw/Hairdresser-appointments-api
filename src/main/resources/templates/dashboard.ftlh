@@ -5,7 +5,7 @@
     <ul>
         <#list week as day>
             <li>
-                ${day.date} ${day.date.dayOfWeek}<br>
+                ${day.date} ${day.date.dayOfWeek} <a href="/config/day/${day.date}">edytuj</a><br>
                 ${day.fromTo}   
                 <#if day.appointments??>
                 <ul>
@@ -19,10 +19,10 @@
     </ul>
     
     <!--nawigacja-->
-    <a href="/dashboard/${dmw.year?c}/${dmw.monthValue?c}/${dmw.dayOfMonth?c}"><<</a>
-    <a href="/dashboard/${dmd.year?c}/${dmd.monthValue?c}/${dmd.dayOfMonth?c}"><</a>
-    <a href="/dashboard/${dpd.year?c}/${dpd.monthValue?c}/${dpd.dayOfMonth?c}">></a>
-    <a href="/dashboard/${dpw.year?c}/${dpw.monthValue?c}/${dpw.dayOfMonth?c}">>></a>
+    <a href="/dashboard/${dmw}"><<</a>
+    <a href="/dashboard/${dmd}"><</a>
+    <a href="/dashboard/${dpd}">></a>
+    <a href="/dashboard/${dpw}">>></a>
     
     <table border="1">
         <tr>

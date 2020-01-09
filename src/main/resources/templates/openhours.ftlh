@@ -4,7 +4,7 @@
     <h2>Lista definicji</h2>
     <ul>
         <#list definitions as def>
-            <li>${def.appliesFrom} <a href="/config/openhours/${def.appliesFrom}">Wczytaj</a> <a href="/config/openhours/del/${def.id}">Usuń</a></li>
+            <li>${def.appliesFrom} <a href="/config/openhours/${def.appliesFrom}">Wczytaj</a> <#if (def.id>2)><a href="/config/openhours/del/${def.id}">Usuń</a></#if></li>
         </#list>
         <li><a href="/config/openhours/edit">Nowa definicja</a></li>
     </ul>
