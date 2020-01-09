@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
@@ -26,7 +27,9 @@ public class WorkDay {
     private Long id;
     @Column(unique=true)
     private LocalDate date;
+    @Setter
     private int openFrom;
+    @Setter
     private int openTo;
     @OneToMany(mappedBy = "day", fetch = FetchType.EAGER)
     private List<Appointment> appointments;
@@ -37,14 +40,40 @@ public class WorkDay {
         this.openTo = openTo;
     }
     
+    public boolean isOpen(){
+        return (openFrom<openTo);
+    }
+    
     public String getFromTo(){
         if(openFrom<openTo)
             return minToHours(openFrom)+" - "+minToHours(openTo);
         return "zamknięte";
     }
     
+    public String getOpenFromStr(){
+        return minToHours(openFrom);
+    }
+    
+    public String getOpenToStr(){
+        return minToHours(openTo);
+    }
+    
+    public void setOpenFromStr(String hours){
+        openFrom=hoursToMin(hours);
+    }
+    
+    public void setOpenToStr(String hours){
+        openTo=hoursToMin(hours);
+    }
+    
     private String minToHours(int min){
         return String.valueOf((int)(min/60))+":"+String.format("%02d",min%60);
     }
     
+    private int hoursToMin(String str){
+        if(!str.matches("^\\d{1,2}:\\d{1,2}$"))
+            return 0;
+        String[] arr=str.split(":");
+        return (Integer.parseInt(arr[0])*60)+Integer.parseInt(arr[1]);
+    }
 }

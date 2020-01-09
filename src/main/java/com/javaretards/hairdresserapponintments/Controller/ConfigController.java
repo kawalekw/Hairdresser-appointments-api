@@ -7,6 +7,7 @@ import com.javaretards.hairdresserapponintments.Entity.WorkDay;
 import com.javaretards.hairdresserapponintments.Repository.ClientRepository;
 import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
+import com.javaretards.hairdresserapponintments.Repository.WorkDayRepository;
 import java.time.LocalDate;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ public class ConfigController {
     OpenHoursRepositiory ohr;
     @Autowired
     ClientRepository cr;
+    @Autowired
+    WorkDayRepository wdr;
     
     @RequestMapping(value = "/services", method = RequestMethod.GET)
     public String viewServicesAction(Model model){
@@ -125,7 +128,7 @@ public class ConfigController {
         return "redirect:/config/clients";
     }
     
-    @RequestMapping("/day/{datestr}")
+    @RequestMapping(value = "/day/{datestr}", method = RequestMethod.GET)
     public String dayAction(Model model, @PathVariable("datestr") String datestr){
         LocalDate date;
         try{
@@ -134,7 +137,46 @@ public class ConfigController {
         catch(java.lang.NullPointerException | java.time.format.DateTimeParseException e){
             date = LocalDate.now();
         }
-        model.addAttribute("day", new WorkDay(date,600,1200));
+        WorkDay wd;
+        Optional<WorkDay> owd = wdr.findByDate(date);
+        if(owd.isPresent()){
+            wd = owd.get();
+        }
+        else{
+            OpenHours ohc = ohr.findFirstByAppliesFromBeforeOrderByAppliesFromDesc(date.plusDays(1)).get();
+            wd = new WorkDay(date, ohc.getFrom(date.getDayOfWeek().getValue()),ohc.getTo(date.getDayOfWeek().getValue()));
+        }
+        model.addAttribute("day", wd);
         return "day";
+    }
+    
+    @RequestMapping(value = "/day/edit", method = RequestMethod.POST)
+    public String dayEditAction(@RequestParam(value = "open", defaultValue = "false") boolean open, @RequestParam("datestr") String datestr, @RequestParam("from") String from, @RequestParam("to") String to){
+        LocalDate date;
+        try{
+            date = LocalDate.parse(datestr);
+        }
+        catch(java.lang.NullPointerException | java.time.format.DateTimeParseException e){
+            date = LocalDate.now();
+        }
+        WorkDay wd;
+        Optional<WorkDay> owd = wdr.findByDate(date);
+        if(owd.isPresent()){
+            wd = owd.get();
+        }
+        else{
+            OpenHours ohc = ohr.findFirstByAppliesFromBeforeOrderByAppliesFromDesc(date.plusDays(1)).get();
+            wd = new WorkDay(date, 0, 0);
+        }
+        if(open){
+            wd.setOpenFromStr(from);
+            wd.setOpenToStr(to);
+        }
+        else{
+            wd.setOpenFrom(0);
+            wd.setOpenTo(0);
+        }
+        wdr.save(wd);
+        return "redirect:/config/day/"+datestr;
     }
 }
