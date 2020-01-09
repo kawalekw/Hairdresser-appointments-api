@@ -11,7 +11,6 @@ import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
 import com.javaretards.hairdresserapponintments.Repository.WorkDayRepository;
 import java.time.LocalDate;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -46,13 +45,18 @@ public class DataLoader implements ApplicationRunner{
             sr.save(new ServiceOption("Farba",75));
         }
         if(!cr.findByPhone("0").isPresent()){
-            cr.save(new Client(0,"0",false)); //default client
+            cr.save(new Client("0")); //default client
+            cr.save(new Client("754815458"));
+            cr.save(new Client("684518874"));
+            cr.save(new Client("697554187"));
+            cr.save(new Client("745156755"));
         }
         if(wdr.count()==0){
-            WorkDay dDay = new WorkDay(LocalDate.parse("2020-01-01"),800,1000);
+            WorkDay dDay = new WorkDay(LocalDate.parse("2020-01-01"),600,1020);
             wdr.save(dDay);
-            ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(1l).get(),820,"Janusz Kowalski",dDay));
+            ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(1l).get(),640,"Janusz Kowalski",dDay));
+            ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(3l).get(),820,"Marianna Kowalski",dDay));
         }
-        
+         
     }
 }

@@ -59,6 +59,18 @@ public class OpenHours {
         return -1;
     }
     
+    public String getFromStr(int day){
+        if(day<7 && day>=0)
+            return minToHours(openFrom[day]);
+        return "no such day";
+    }
+    
+    public String getToStr(int day){
+        if(day<7 && day>=0)
+            return minToHours(openTo[day]);
+        return "no such day";
+    }
+    
     public String getFromTo(int day){
         if(day<7 && day>=0){
             if(openFrom[day]<openTo[day])
@@ -67,7 +79,19 @@ public class OpenHours {
         }
         return "no such day exists";
     }
-
+    
+    public void setFromStr(int day, String str){
+        if(day>=0 && day<7){
+            this.openFrom[day]=hoursToMin(str);
+        }
+    }
+        
+    public void setToStr(int day, String str){
+        if(day>=0 && day<7){
+            this.openTo[day]=hoursToMin(str);
+        }
+    } 
+    
     public Long getId() {
         return id;
     }
@@ -86,5 +110,12 @@ public class OpenHours {
     
     private String minToHours(int min){
         return String.valueOf((int)(min/60))+":"+String.format("%02d",min%60);
+    }
+    
+    private int hoursToMin(String str){
+        if(!str.matches("^\\d{1,2}:\\d{1,2}$"))
+            return 0;
+        String[] arr=str.split(":");
+        return (Integer.parseInt(arr[0])*60)+Integer.parseInt(arr[1]);
     }
 }

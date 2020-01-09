@@ -3,11 +3,10 @@
 <#macro page_body>
 <div class="container-fluid text-center text-md-left">
     <h1>Dashboard</h1>
-    <div>Tu będzię się wyświetlać robota na przyszły tydzień</div>
     <ul>
         <#list week as day>
             <li>
-                ${day.date} ${day.date.dayOfWeek}<br>
+                ${day.date} ${day.date.dayOfWeek} <a href="/config/day/${day.date}">edytuj</a><br>
                 ${day.fromTo}   
                 <#if day.appointments??>
                 <ul>
@@ -19,17 +18,52 @@
             </li>
         </#list>
     </ul>
+    
     <!--nawigacja-->
-    <a href="/dashboard/${dmw.year?c}/${dmw.monthValue?c}/${dmw.dayOfMonth?c}"><<</a>
-    <a href="/dashboard/${dmd.year?c}/${dmd.monthValue?c}/${dmd.dayOfMonth?c}"><</a>
-    <a href="/dashboard/${dpd.year?c}/${dpd.monthValue?c}/${dpd.dayOfMonth?c}">></a>
-    <a href="/dashboard/${dpw.year?c}/${dpw.monthValue?c}/${dpw.dayOfMonth?c}">>></a>
+    <a href="/dashboard/${dmw}"><<</a>
+    <a href="/dashboard/${dmd}"><</a>
+    <a href="/dashboard/${dpd}">></a>
+    <a href="/dashboard/${dpw}">>></a>
+    
+    <table border="1">
+        <tr>
+            <#list week as day>
+                <td>${day.date.dayOfWeek}</td>
+            </#list>
+        </tr>
+        <tr>
+            <#list week as day>
+                <th>${day.date}</th>
+            </#list>
+        </tr>
+        <tr>
+            <#list week as day>
+                <th>${day.fromTo}</th>
+            </#list>
+        </tr>
+        <tr>
+            <#list week as day>
+            <td>
+                <#if day.appointments??>
+                    Wizyty:
+                    <ul>
+                        <#list day.appointments as app>
+                            <li>${app.fromTo} <br> ${app.name} <br> ${app.service.name}</li>
+                        </#list>
+                    </ul>
+                    </#if>
+                </td>
+            </#list>
+        </tr>
+    </table>
+
     <br>
     <div>
        Ustawiena:
        <ul>
            <li><a href="/config/services">Usługi</a></li>
            <li><a href="/config/openhours">Godziny otwarcia</a></li>
+           <li><a href="/config/clients">Klienci</a></li>
         </ul
     </div>
 </div>

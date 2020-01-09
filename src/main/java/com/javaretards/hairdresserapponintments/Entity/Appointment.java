@@ -51,6 +51,10 @@ public class Appointment {
         return minToHours(startsAt)+" - "+minToHours(startsAt+service.getDuration());
     }
     
+    public int getEndsAt(){
+        return this.startsAt+this.service.getDuration();
+    }
+    
     private String minToHours(int min){
         return String.valueOf((int)(min/60))+":"+String.format("%02d",min%60);
     }

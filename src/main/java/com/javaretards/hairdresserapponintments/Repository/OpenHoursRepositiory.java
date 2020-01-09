@@ -11,4 +11,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface OpenHoursRepositiory extends CrudRepository<OpenHours, Long>{
     Optional<OpenHours> findFirstByAppliesFromBeforeOrderByAppliesFromDesc(LocalDate date);
+    Iterable<OpenHours> findAllByOrderByAppliesFromAsc();
 }

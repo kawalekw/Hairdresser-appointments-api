@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,22 +26,19 @@ public class DashboadController {
     @Autowired
     OpenHoursRepositiory ohr;
     
-    @RequestMapping(value={"/dashboard","/dashboard/{year}/{month}/{day}"})
-    public String dashboardAction(Model model,
-            @PathVariable(value = "year",required = false) Integer year,
-            @PathVariable(value = "month",required = false) Integer month,
-            @PathVariable(value = "day", required = false) Integer day)
+    @RequestMapping(value={"/dashboard","/dashboard/{datestr}"})
+    public String dashboardAction(Model model, @PathVariable(value = "datestr", required = false) String datestr)
     {
         List<WorkDay> week = new ArrayList<>();
         LocalDate date = LocalDate.now();
-        if(year != null){
+        
             try{
-                date = LocalDate.of(year, month, day);
+                date = LocalDate.parse(datestr);
             }
-            catch(java.time.DateTimeException e){
+            catch(java.time.format.DateTimeParseException | java.lang.NullPointerException e){
                 date = LocalDate.now();
             }
-        }
+        
         for(int i=0;i<7;i++){
             LocalDate cache = date.plusDays(i);
             Optional<WorkDay> cacheDay = wdr.findByDate(cache);
