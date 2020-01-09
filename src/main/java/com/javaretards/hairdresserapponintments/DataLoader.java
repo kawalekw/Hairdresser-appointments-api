@@ -52,9 +52,10 @@ public class DataLoader implements ApplicationRunner{
             cr.save(new Client("745156755"));
         }
         if(wdr.count()==0){
-            WorkDay dDay = new WorkDay(LocalDate.parse("2020-01-01"),800,1000);
+            WorkDay dDay = new WorkDay(LocalDate.parse("2020-01-01"),600,1020);
             wdr.save(dDay);
-            ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(1l).get(),820,"Janusz Kowalski",dDay));
+            ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(1l).get(),640,"Janusz Kowalski",dDay));
+            ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(3l).get(),820,"Marianna Kowalski",dDay));
         }
          
     }

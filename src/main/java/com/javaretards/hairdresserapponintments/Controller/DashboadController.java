@@ -29,8 +29,8 @@ public class DashboadController {
     
     @RequestMapping(value={"/dashboard","/dashboard/{year}/{month}/{day}"})
     public String dashboardAction(Model model,
-            @PathVariable(value = "year",required = false) Integer year,
-            @PathVariable(value = "month",required = false) Integer month,
+            @PathVariable(value = "year", required = false) Integer year,
+            @PathVariable(value = "month", required = false) Integer month,
             @PathVariable(value = "day", required = false) Integer day)
     {
         List<WorkDay> week = new ArrayList<>();
