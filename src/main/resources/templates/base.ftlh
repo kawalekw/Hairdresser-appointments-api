@@ -35,8 +35,8 @@
 </#macro>
 
 <#macro page_footer>
-<footer class="page-footer font-small navbar-light pt-4">
-    <div class="container-fluid text-center text-md-left">
+<footer class="page-footer fixed-bottom bg-light  font-small pt-4">
+    <div class="container-fluid text-center  text-md-left">
         <h4 class="text-uppercase">
         stopka 
         <a href="/dashboard">Dashboard</a>
