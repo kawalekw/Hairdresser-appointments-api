@@ -7,7 +7,6 @@ import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
 import com.javaretards.hairdresserapponintments.Repository.WorkDayRepository;
 import com.javaretards.hairdresserapponintments.Service.ScheduleService;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
