@@ -2,7 +2,7 @@
 
 <#macro page_body>
     <h1>Godziny otwarcia</h1>
-    <form action="/config/openhours/edit" method="post">
+    <form action="/openhours/edit" method="post">
         <ul>
             <li>Niedziela:
                 <input type="text" class="hourInput" name="from[]" value="${openhours.fromStr(0)}">

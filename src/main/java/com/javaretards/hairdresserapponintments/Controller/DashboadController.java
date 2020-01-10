@@ -4,6 +4,7 @@ import com.javaretards.hairdresserapponintments.Entity.OpenHours;
 import com.javaretards.hairdresserapponintments.Entity.WorkDay;
 import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.WorkDayRepository;
+import com.javaretards.hairdresserapponintments.Service.DateUtilityService;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,31 +21,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class DashboadController {
-    
-    @Autowired
-    WorkDayRepository wdr;
-    @Autowired
-    OpenHoursRepositiory ohr;
+    @Autowired WorkDayRepository wdr;
+    @Autowired OpenHoursRepositiory ohr;
+    @Autowired DateUtilityService dus;
     
     @RequestMapping(value={"/dashboard","/dashboard/{datestr}"})
-    public String dashboardAction(Model model, @PathVariable(value = "datestr", required = false) String datestr)
-    {
+    public String dashboardAction(Model model, @PathVariable(value = "datestr", required = false) String datestr){
+        LocalDate date = dus.parseOrNow(datestr);
         List<WorkDay> week = new ArrayList<>();
-        LocalDate date = LocalDate.now();
-        
-            try{
-                date = LocalDate.parse(datestr);
-            }
-            catch(java.time.format.DateTimeParseException | java.lang.NullPointerException e){
-                date = LocalDate.now();
-            }
-        
         for(int i=0;i<7;i++){
             LocalDate cache = date.plusDays(i);
             Optional<WorkDay> cacheDay = wdr.findByDate(cache);
-            if(cacheDay.isPresent()){
+            if(cacheDay.isPresent())
                 week.add(cacheDay.get());
-            }
             else {
                 OpenHours openHoursCache = ohr.findFirstByAppliesFromBeforeOrderByAppliesFromDesc(cache.plusDays(1)).get();
                 WorkDay wd = new WorkDay(cache, openHoursCache.getFrom(cache.getDayOfWeek().getValue()),openHoursCache.getTo(cache.getDayOfWeek().getValue()));

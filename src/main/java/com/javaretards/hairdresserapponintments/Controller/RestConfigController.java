@@ -22,14 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class RestConfigController {
-    @Autowired
-    ServiceRepository sr;
-    @Autowired
-    WorkDayRepository wdr;
-    @Autowired
-    OpenHoursRepositiory ohr;
-    @Autowired
-    ScheduleService ss;
+    @Autowired ServiceRepository sr;
+    @Autowired WorkDayRepository wdr;
+    @Autowired OpenHoursRepositiory ohr;
+    @Autowired ScheduleService ss;
     
     @GetMapping("/api/services")
     public Iterable<ServiceOption> getAllServices(){

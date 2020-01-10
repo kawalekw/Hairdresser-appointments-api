@@ -1,11 +1,11 @@
 <#include "base.ftlh">
 
 <#macro page_body>
-    Klienci
+    <h4>Klienci</h4>
     <ul>
         <#list clients as client>
             <#if client.phone!="0">
-                <li>${client.phone} <#if client.blocked><a  href="/config/clients/unlock/${client.id}">Odblokuj</a><#else><a href="/config/clients/block/${client.id}">Zablokuj</a></#if></li>
+                <li>${client.phone} <#if client.blocked><a  href="/clients/unlock/${client.id}">Odblokuj</a><#else><a href="/clients/block/${client.id}">Zablokuj</a></#if></li>
             </#if>
         </#list>
     </ul>

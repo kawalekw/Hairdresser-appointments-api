@@ -6,7 +6,7 @@
     <ul>
         <#list week as day>
             <li>
-                ${day.date} ${day.date.dayOfWeek} <a href="/config/day/${day.date}">edytuj</a><br>
+                ${day.date} ${day.date.dayOfWeek} <a href="/day/${day.date}">edytuj</a><br>
                 ${day.fromTo}   
                 <#if day.appointments??>
                 <ul>
@@ -61,9 +61,9 @@
     <div>
        Ustawiena:
        <ul>
-           <li><a href="/config/services">Usługi</a></li>
-           <li><a href="/config/openhours">Godziny otwarcia</a></li>
-           <li><a href="/config/clients">Klienci</a></li>
+           <li><a href="/services">Usługi</a></li>
+           <li><a href="/openhours">Godziny otwarcia</a></li>
+           <li><a href="/clients">Klienci</a></li>
         </ul
     </div>
 </div>

@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Override
     public void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/config/**","/dashboard/**").hasRole("ADMIN")
+        http.authorizeRequests().antMatchers("/dashboard/**","/services/**","/openhours/**","/clients/**","/day/**").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login").permitAll();
         
         //http.csrf().disable(); http.headers().frameOptions().disable(); //uncomment to acces /h2-console

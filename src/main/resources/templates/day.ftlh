@@ -6,13 +6,13 @@
     <#if day.appointments??>
         <ul>
             <#list day.appointments as app>
-                <li>${app.fromTo} - ${app.name} - ${app.service.name}</li>
+                <li>${app.fromTo} - ${app.name} - ${app.service.name} <a href="/day/disappoint/${app.id}">Usuń</a></li>
             </#list>
         </ul>
     </#if>
-    <a href="/config/appoint/${day.date}">dodaj wizytę</a>
+    <#if day.open><a href="/day/appoint/${day.date}">dodaj wizytę</a></#if>
     <br>
-    <form action="/config/day/edit" method="post">
+    <form action="/day/edit" method="post">
         Otwarte: <input type="checkbox" name="open" <#if day.open> checked</#if>><br>
         Od: <input type="text" class="hourInput" name="from" value="${day.openFromStr}"><br>
         Do: <input type="text" class="hourInput" name="to" value="${day.openToStr}"><br>

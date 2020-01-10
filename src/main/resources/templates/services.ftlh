@@ -4,7 +4,7 @@
 <div class="container-fluid text-center text-md-left">
     <div>
         Dodaj nową usługę
-        <form action="/config/services" method="POST">
+        <form action="/services" method="POST">
             Nazwa usługi: <input type="text" name="name"><br>
             Czas trwania: <input type="decimal" name="duration"><br>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -14,7 +14,7 @@
         Lista usług:
         <ul>
             <#list services as service>
-                <li>${service.name} - ${service.duration}min <a href="/config/services/delete/${service.id}">X</a></li>
+                <li>${service.name} - ${service.duration}min <a href="/services/delete/${service.id}">X</a></li>
             </#list>
         </ul>
     </div>
