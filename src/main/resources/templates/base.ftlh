@@ -6,8 +6,9 @@
     <@common_page_head/>
     <title>Fryzjer Online</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <script src="/js/jquery-3.0.0.slim.js"></script>
+    <script src="/js/jquery-3.0.0.min.js"></script>
     <script src="/js/bootstrap.js"></script>
+    <script src="/js/main.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </#macro>
 

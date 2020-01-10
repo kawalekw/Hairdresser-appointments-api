@@ -10,6 +10,7 @@
             </#list>
         </ul>
     </#if>
+    <a href="/config/appoint/${day.date}">dodaj wizytę</a>
     <br>
     <form action="/config/day/edit" method="post">
         Otwarte: <input type="checkbox" name="open" <#if day.open> checked</#if>><br>

@@ -56,7 +56,7 @@ public class DataLoader implements ApplicationRunner{
             wdr.save(dDay);
             ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(1l).get(),640,"Janusz Kowalski",dDay));
             ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(3l).get(),820,"Marianna Kowalski",dDay));
+            ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(2l).get(),600,"Janusz Pawlacz",dDay));
         }
-         
     }
 }

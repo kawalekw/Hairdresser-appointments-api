@@ -1,7 +1,9 @@
 package com.javaretards.hairdresserapponintments.Entity;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -75,5 +77,11 @@ public class WorkDay {
             return 0;
         String[] arr=str.split(":");
         return (Integer.parseInt(arr[0])*60)+Integer.parseInt(arr[1]);
+    }
+    
+    public List<Appointment> getAppointments(){
+        if(appointments!=null)
+            return appointments.stream().sorted(Comparator.comparing(Appointment::getStartsAt)).collect(Collectors.toList());
+        return null;
     }
 }
