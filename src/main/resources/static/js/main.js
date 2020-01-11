@@ -1,8 +1,15 @@
 $( document ).ready(function() {
-    $("#serviceSelect").change(function () {    
+    $("#serviceSelect").change(function () {
+        var appDate;
+        if (typeof dateIs !== 'undefined') {
+            appDate = dateIs;
+        }
+        else {
+            appDate = $("#daySelect").val();
+        }
         //alert($("#serviceSelect").val());
         $.ajax({
-            url         : "/api/schedule/id/"+dateIs+"/"+$("#serviceSelect").val(),
+            url         : "/api/schedule/id/"+appDate+"/"+$("#serviceSelect").val(),
             method      : "get",
             contentType : 'application/json',
             dataType    : 'json',
@@ -17,4 +24,8 @@ $( document ).ready(function() {
             },
         });
     }); 
+    $("#daySelect").change(function () {
+        $("#serviceSelect").val([]);
+        $('#hourSelect').empty();
+    });
 });

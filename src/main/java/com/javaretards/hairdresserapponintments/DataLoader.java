@@ -7,7 +7,6 @@ import com.javaretards.hairdresserapponintments.Entity.ServiceOption;
 import com.javaretards.hairdresserapponintments.Entity.WorkDay;
 import com.javaretards.hairdresserapponintments.Repository.AppointmentRepository;
 import com.javaretards.hairdresserapponintments.Repository.ClientRepository;
-import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
 import com.javaretards.hairdresserapponintments.Repository.WorkDayRepository;
 import java.time.LocalDate;
@@ -15,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
+import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepository;
 
 /**
  *
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataLoader implements ApplicationRunner{
     @Autowired
-    OpenHoursRepositiory ohr;
+    OpenHoursRepository ohr;
     @Autowired
     ServiceRepository sr;
     @Autowired

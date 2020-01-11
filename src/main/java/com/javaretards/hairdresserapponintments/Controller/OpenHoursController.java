@@ -1,7 +1,6 @@
 package com.javaretards.hairdresserapponintments.Controller;
 
 import com.javaretards.hairdresserapponintments.Entity.OpenHours;
-import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Service.DateUtilityService;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepository;
 
 /**
  *
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 @Controller
 public class OpenHoursController {
-    @Autowired OpenHoursRepositiory ohr;
+    @Autowired OpenHoursRepository ohr;
     @Autowired DateUtilityService dus;
 
     @RequestMapping(value = {"/openhours","/openhours/{datestr}"}, method = RequestMethod.GET)

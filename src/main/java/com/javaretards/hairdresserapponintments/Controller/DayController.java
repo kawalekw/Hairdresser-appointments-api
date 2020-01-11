@@ -5,7 +5,6 @@ import com.javaretards.hairdresserapponintments.Entity.OpenHours;
 import com.javaretards.hairdresserapponintments.Entity.WorkDay;
 import com.javaretards.hairdresserapponintments.Repository.AppointmentRepository;
 import com.javaretards.hairdresserapponintments.Repository.ClientRepository;
-import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
 import com.javaretards.hairdresserapponintments.Repository.WorkDayRepository;
 import com.javaretards.hairdresserapponintments.Service.DateUtilityService;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepository;
 
 /**
  *
@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class DayController {
     @Autowired AppointmentRepository ar;
     @Autowired ServiceRepository sr;
-    @Autowired OpenHoursRepositiory ohr;
+    @Autowired OpenHoursRepository ohr;
     @Autowired ClientRepository cr;
     @Autowired WorkDayRepository wdr;
     @Autowired ScheduleService ss;

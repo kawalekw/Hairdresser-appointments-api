@@ -3,7 +3,6 @@ package com.javaretards.hairdresserapponintments.Controller;
 import com.javaretards.hairdresserapponintments.Entity.OpenHours;
 import com.javaretards.hairdresserapponintments.Entity.ServiceOption;
 import com.javaretards.hairdresserapponintments.Entity.WorkDay;
-import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepositiory;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
 import com.javaretards.hairdresserapponintments.Repository.WorkDayRepository;
 import com.javaretards.hairdresserapponintments.Service.ScheduleService;
@@ -14,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepository;
 
 /**
  *
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestConfigController {
     @Autowired ServiceRepository sr;
     @Autowired WorkDayRepository wdr;
-    @Autowired OpenHoursRepositiory ohr;
+    @Autowired OpenHoursRepository ohr;
     @Autowired ScheduleService ss;
     
     @GetMapping("/api/services")
