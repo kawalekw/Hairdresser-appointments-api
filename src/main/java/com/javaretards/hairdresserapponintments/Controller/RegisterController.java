@@ -94,6 +94,11 @@ public class RegisterController {
             ratt.addFlashAttribute("alert_error", "Niepoprawna godzina");
             return "redirect:/register";
         }
+        int minutes=ss.hoursToMin(hour);
+        if(minutes%5!=0 || minutes<wd.getOpenFrom() || minutes>wd.getOpenTo()){
+            ratt.addFlashAttribute("alert_error", "Niepoprawna godzina");
+            return "redirect:/register"; 
+        }
         if(name==null || name.length()<=3){
             ratt.addFlashAttribute("alert_error", "Podaj imię i nazwisko");
             return "redirect:/register"; 
@@ -116,7 +121,7 @@ public class RegisterController {
             cr.save(cl);
         }
         //shit roughly validated \/ add to the db \/
-        ar.save(new Appointment(cl,se,ss.hoursToMin(hour),name,wd));
+        ar.save(new Appointment(cl,se,minutes,name,wd));
         ratt.addFlashAttribute("alert_success", "Umówiono pomyślnie");
         return "redirect:/registered/"+phone;
     }
