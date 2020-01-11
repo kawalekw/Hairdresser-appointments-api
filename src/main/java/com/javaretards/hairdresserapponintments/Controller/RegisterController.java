@@ -95,7 +95,7 @@ public class RegisterController {
             return "redirect:/register";
         }
         int minutes=ss.hoursToMin(hour);
-        if(minutes%5!=0 || minutes<wd.getOpenFrom() || minutes>wd.getOpenTo()){
+        if(minutes%5!=0 || minutes<wd.getOpenFrom() || minutes>wd.getOpenTo()-se.getDuration()){
             ratt.addFlashAttribute("alert_error", "Niepoprawna godzina");
             return "redirect:/register"; 
         }
