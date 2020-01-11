@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -25,24 +26,32 @@ public class ClientsController {
     }
     
     @RequestMapping(value = "/clients/block/{id}", method = RequestMethod.GET)
-    public String blockClientAction(@PathVariable("id") Long id){
+    public String blockClientAction(RedirectAttributes ratt, @PathVariable("id") Long id){
         Optional<Client> toDelete = cr.findById(id);
         if(toDelete.isPresent()){
             Client cl = toDelete.get();
             cl.block();
             cr.save(cl);
+        }else{
+            ratt.addFlashAttribute("alert_error", "Nie ma takiego klienta");
+            return "redirect:/clients";
         }
+        ratt.addFlashAttribute("alert_success", "Zablokowano pomyślnie");
         return "redirect:/clients";
     }
     
     @RequestMapping(value = "/clients/unlock/{id}", method = RequestMethod.GET)
-    public String unlockClientAction(@PathVariable("id") Long id){
+    public String unlockClientAction(RedirectAttributes ratt, @PathVariable("id") Long id){
         Optional<Client> toDelete = cr.findById(id);
         if(toDelete.isPresent()){
             Client cl = toDelete.get();
             cl.unlock();
             cr.save(cl);
+        }else{
+            ratt.addFlashAttribute("alert_error", "Nie ma takiego klienta");
+            return "redirect:/clients";
         }
+        ratt.addFlashAttribute("alert_success", "Odblokowano pomyślnie");
         return "redirect:/clients";
     }
 }

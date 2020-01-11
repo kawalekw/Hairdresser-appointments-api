@@ -45,7 +45,6 @@
             <#list week as day>
             <td>
                 <#if day.appointments??>
-                    Wizyty:
                     <ul>
                         <#list day.appointments as app>
                             <li>${app.fromTo} <br> ${app.name} <br> ${app.service.name}</li>

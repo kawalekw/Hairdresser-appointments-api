@@ -33,6 +33,18 @@
         </ul>
     
 </nav>
+<div class="container-fluid">
+    <#if alert_success??>
+        <div class="alert alert-success alert-dismissible js-dismiss">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>${alert_success}
+        </div>
+    </#if>
+    <#if alert_error??>
+        <div class="alert alert-danger alert-dismissible js-dismiss">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>${alert_error}
+        </div>
+    </#if>
+</div>
 </#macro>
 
 <#macro page_footer>

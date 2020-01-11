@@ -4,7 +4,7 @@
     <form action="" method="post">
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         Wybierz dzień:
-        <select id="daySelect" name="day">
+        <select id="daySelect" name="datestr">
             <#list days as day>
                 <#if day.open><option value="${day.date}">${day.date}</option></#if>
             </#list>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepository;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -38,7 +39,7 @@ public class OpenHoursController {
     }
     
     @RequestMapping(value = "/openhours/edit", method = RequestMethod.POST)
-    public String finallyEditOpenHoursAction(@RequestParam("from[]") String[] from, @RequestParam("to[]") String[] to, @RequestParam("appliesfrom") String appliesFrom){
+    public String finallyEditOpenHoursAction(RedirectAttributes ratt, @RequestParam("from[]") String[] from, @RequestParam("to[]") String[] to, @RequestParam("appliesfrom") String appliesFrom){
         LocalDate applies = LocalDate.parse(appliesFrom); // TODO: resolve failed parse() exception
         OpenHours oh;
         Optional<OpenHours> ooh = ohr.findByAppliesFrom(applies);
@@ -51,15 +52,21 @@ public class OpenHoursController {
             oh.setToStr(i, to[i]);
         }
         ohr.save(oh);
+        ratt.addFlashAttribute("alert_success", "Zapisano pomyślnie");
         return "redirect:/openhours";
     }
     @RequestMapping(value = "/openhours/del/{id}", method = RequestMethod.GET)
-    public String deleteOpenHoursAction(@PathVariable("id") Long id){
+    public String deleteOpenHoursAction(RedirectAttributes ratt, @PathVariable("id") Long id){
         Optional<OpenHours> toDelete = ohr.findById(id);
         if(toDelete.isPresent()){
             OpenHours op = toDelete.get();
             ohr.delete(op);
         }
+        else{
+            ratt.addFlashAttribute("alert_error", "Nie ma takiej definicji");
+            return "redirect:/openhours";
+        }
+        ratt.addFlashAttribute("alert_success", "Usunięto pomyślnie");
         return "redirect:/openhours";
     }
 }

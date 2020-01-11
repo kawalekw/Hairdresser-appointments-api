@@ -1,4 +1,6 @@
 $( document ).ready(function() {
+    setTimeout(function(){ $(".js-dismiss").hide(); }, 5000); //auto hiding alerts
+    
     $("#serviceSelect").change(function () {
         var appDate;
         if (typeof dateIs !== 'undefined') {

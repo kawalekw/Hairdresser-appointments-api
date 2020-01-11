@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -27,19 +28,21 @@ public class ServicesController {
     }
     
     @RequestMapping(value = "/services", method = RequestMethod.POST)
-    public String addServiceAction(@RequestParam("name") String name, @RequestParam("duration") int duration){
+    public String addServiceAction(RedirectAttributes ratt, @RequestParam("name") String name, @RequestParam("duration") int duration){
         sr.save(new ServiceOption(name,duration));
+        ratt.addFlashAttribute("alert_success", "Zapisano pomyślnie");
         return "redirect:/services";
     }
 
     @RequestMapping(value = "/services/delete/{id}", method = RequestMethod.GET)
-    public String deleteServiceAction(@PathVariable("id") Long id){
+    public String deleteServiceAction(RedirectAttributes ratt, @PathVariable("id") Long id){
         Optional<ServiceOption> toDelete = sr.findById(id);
         if(toDelete.isPresent()){
             ServiceOption so = toDelete.get();
             so.setDeleted(true);
             sr.save(so);
         }
+        ratt.addFlashAttribute("alert_success", "Usunięto pomyślnie");
         return "redirect:/services";
     }
 }

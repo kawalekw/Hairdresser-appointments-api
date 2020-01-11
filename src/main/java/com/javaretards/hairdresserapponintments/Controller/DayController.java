@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepository;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -52,7 +53,7 @@ public class DayController {
     }
     
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String dayEditAction(@RequestParam(value = "open", defaultValue = "false") boolean open, @RequestParam("datestr") String datestr, @RequestParam("from") String from, @RequestParam("to") String to){
+    public String dayEditAction(RedirectAttributes ratt, @RequestParam(value = "open", defaultValue = "false") boolean open, @RequestParam("datestr") String datestr, @RequestParam("from") String from, @RequestParam("to") String to){
         LocalDate date = dus.parseOrNow(datestr);
         WorkDay wd;
         Optional<WorkDay> owd = wdr.findByDate(date);
@@ -72,6 +73,7 @@ public class DayController {
             wd.setOpenTo(0);
         }
         wdr.save(wd);
+        ratt.addFlashAttribute("alert_success", "Zapisano pomyślnie");
         return "redirect:/day/"+datestr;
     }
     
@@ -93,8 +95,15 @@ public class DayController {
     }
     
     @RequestMapping(value = "/appoint/{datestr}", method = RequestMethod.POST)
-    public String appointAction(@PathVariable("datestr") String datestr, @RequestParam("service") Long service, @RequestParam("hour") String hour, @RequestParam("name") String name){
-        LocalDate date = dus.parseOrNow(datestr);
+    public String appointAction(RedirectAttributes ratt, @PathVariable("datestr") String datestr, @RequestParam("service") Long service, @RequestParam("hour") String hour, @RequestParam("name") String name){
+        LocalDate date;
+        try{
+            date=LocalDate.parse(datestr);
+        }
+        catch(java.lang.NullPointerException | java.time.format.DateTimeParseException e){
+            ratt.addFlashAttribute("alert_error","Niepoprawna data");
+            return "redirect:/day/"+datestr;
+        }
         WorkDay wd;
         Optional<WorkDay> owd = wdr.findByDate(date);
         if(owd.isPresent()){
@@ -106,19 +115,22 @@ public class DayController {
             wdr.save(wd);
         }
         ar.save(new Appointment(cr.findByPhone("0").get(),sr.findById(service).get(),ss.hoursToMin(hour),name,wd));
+        ratt.addFlashAttribute("alert_success","Dodano spotkanie");
         return "redirect:/day/"+datestr;
     }
     
     @RequestMapping(value = "/disappoint/{id}", method = RequestMethod.GET)
-    public String appointFormAction(Model model, @PathVariable("id") Long id){
+    public String appointFormAction(RedirectAttributes ratt, @PathVariable("id") Long id){
         Appointment ap;
         Optional<Appointment> oap = ar.findById(id);
         if(oap.isPresent())
             ap = oap.get();
-        else
+        else{
+            ratt.addFlashAttribute("alert_error", "Nie ma takiego spotkania");
             return "redirect:/dashboard/";
+        }
         ar.delete(ap);
+        ratt.addFlashAttribute("alert_success","Usunięto spotkanie");
         return "redirect:/day/"+ap.getDay().getDate().toString();
     }
-    
 }
