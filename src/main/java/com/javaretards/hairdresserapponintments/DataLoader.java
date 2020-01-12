@@ -29,9 +29,14 @@ public class DataLoader implements ApplicationRunner{
             ohr.save(new OpenHours(LocalDate.parse("2020-01-01"))); //opend since
         }
         if(sr.count()==0){
-            sr.save(new ServiceOption("Strzyżenie męskie",15));
-            sr.save(new ServiceOption("Mycie",10));
-            sr.save(new ServiceOption("Farba",75));
+            sr.save(new ServiceOption("Strzyżenie męskie",20));
+            sr.save(new ServiceOption("Strzyżenie damskie",60));
+            sr.save(new ServiceOption("Modelowanie",60));
+            sr.save(new ServiceOption("Koloryzacja",180));
+            sr.save(new ServiceOption("Regeneracja",120));
+            sr.save(new ServiceOption("Trwała ondulacja",120));
+            sr.save(new ServiceOption("Prostowanie keratynowe",240));
+            sr.save(new ServiceOption("Upięcie okolicznościowe ",90));
         }
         if(!cr.findByPhone("0").isPresent()){
             cr.save(new Client("0")); //default client

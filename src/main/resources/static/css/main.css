@@ -1,0 +1,11 @@
+body  { 
+    background: url("/img/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /*overflow-x:hide;*/
+} 
+html {
+    min-height: 100%;
+}
