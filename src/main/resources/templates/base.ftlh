@@ -25,14 +25,13 @@
 
 <#macro page_navbar>
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-        
-        <div class="navbar-brand">
-        <a class="d-block d-md-none" data-toggle="collapse" data-target="#navbarSupportedContent15">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
+    aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="navbar-brand d-block d-sm-none mx-auto"> 
         Fryzjer Online
-        </a>
-        <a class="d-none d-md-block" >
+        </div>
+        <div class="navbar-brand d-none d-sm-block mx-auto"> 
         Fryzjer Online
-        </a>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent15">
         <ul class="navbar-nav mt-sm-0">
@@ -65,11 +64,10 @@
 <#macro page_footer>
 <footer class="page-footer fixed-bottom bg-light  font-small pt-4">
     <div class="container-fluid text-center text-md-left">
-        <h4 class="text-uppercase">
-        stopka 
+        <h6 class="text-uppercase">
+        <a href="https://www.facebook.com/Salon-Fryzjerski-Paulina-653797101462403" target="_blank"><img src="https://image.flaticon.com/icons/png/512/59/59439.png" style="width:40px;height:40px;" type="button"></img></a> 
         <a href="/dashboard">Dashboard</a>
-        <a href="https://www.facebook.com/Salon-Fryzjerski-Paulina-653797101462403" target="_blank"><img src="https://image.flaticon.com/icons/png/512/59/59439.png" style="width:40px;height:40px;" type="button"></img></a>
-        </h4>
+        </h6>
         
 </div>
 </footer>
