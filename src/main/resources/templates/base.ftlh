@@ -7,6 +7,9 @@
     <title>Fryzjer Online</title>
     <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="/css/main.css" rel="stylesheet" type="text/css">
+    <link rel="icon" 
+      type="image/png" 
+      href="/img/fav.png">
     <script src="/js/jquery-3.0.0.min.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/main.js"></script>
