@@ -27,10 +27,7 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
     aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="navbar-brand d-block d-sm-none mx-auto"> 
-        Fryzjer Online
-        </div>
-        <div class="navbar-brand d-none d-sm-block mx-auto"> 
+        <div class="navbar-brand mx-auto"> 
         Fryzjer Online
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent15">
