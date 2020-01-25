@@ -10,6 +10,8 @@
     <script src="/js/jquery-3.0.0.min.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/main.js"></script>
+    <script src="/js/jquery.validate.js"></script>
+    <script src="/js/localization/messages_pl.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </#macro>
 
@@ -19,12 +21,18 @@
 </#macro>
 
 <#macro page_navbar>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    
-        <div class-"collapse navbar-collapse">
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
         
-        <ul class=navbar-nav mr-auto mt-2 mt-lg-0">
-        <div class="navbar-brand">Fryzjer Online</div>
+        <div class="navbar-brand">
+        <a class="d-block d-md-none" data-toggle="collapse" data-target="#navbarSupportedContent15">
+        Fryzjer Online
+        </a>
+        <a class="d-none d-md-block" >
+        Fryzjer Online
+        </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent15">
+        <ul class="navbar-nav mt-sm-0">
         <li class="nav-item"> 
             <a class="nav-link" href="/">Home</a> 
         </li>
@@ -34,14 +42,17 @@
         </ul>
     
 </nav>
+</br>
+</br>
+</br>
 <div class="container-fluid">
     <#if alert_success??>
-        <div class="alert alert-success alert-dismissible js-dismiss">
+        <div class="alert text-center alert-success alert-dismissible js-dismiss">
             <button type="button" class="close" data-dismiss="alert">&times;</button>${alert_success}
         </div>
     </#if>
     <#if alert_error??>
-        <div class="alert alert-danger alert-dismissible js-dismiss">
+        <div class="alert text-center alert-danger alert-dismissible js-dismiss">
             <button type="button" class="close" data-dismiss="alert">&times;</button>${alert_error}
         </div>
     </#if>
@@ -50,12 +61,14 @@
 
 <#macro page_footer>
 <footer class="page-footer fixed-bottom bg-light  font-small pt-4">
-    <div class="container-fluid text-center  text-md-left">
+    <div class="container-fluid text-center text-md-left">
         <h4 class="text-uppercase">
         stopka 
         <a href="/dashboard">Dashboard</a>
+        <a href="https://www.facebook.com/Salon-Fryzjerski-Paulina-653797101462403" target="_blank"><img src="https://image.flaticon.com/icons/png/512/59/59439.png" style="width:40px;height:40px;" type="button"></img></a>
         </h4>
-    </div>
+        
+</div>
 </footer>
 </#macro>
 
@@ -66,9 +79,11 @@
             <@page_head/>
         </head>
         <body>
+        <div class="container-fluid">
             <@page_navbar/>
             <@page_body/>
             <@page_footer/>
+        </div>
         </body>
     </html>
 </#macro>
