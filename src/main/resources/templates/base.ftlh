@@ -27,14 +27,13 @@
 <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
     aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="navbar-brand mx-auto"> 
+        <div class="mx-auto"> 
+            <a class="navbar-brand" href="/">
         Fryzjer Online
+            </a>
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent15">
         <ul class="navbar-nav mt-sm-0">
-        <li class="nav-item"> 
-            <a class="nav-link" href="/">Home</a> 
-        </li>
         <li class="nav-item">
             <a class="nav-link" href="/register">Register</a>
         </li>
