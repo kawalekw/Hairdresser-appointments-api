@@ -61,11 +61,10 @@
 <footer class="page-footer fixed-bottom bg-light  font-small pt-4">
     <div class="container-fluid text-center text-md-left">
         <h6 class="text-uppercase">
-        <a href="https://www.facebook.com/Salon-Fryzjerski-Paulina-653797101462403" target="_blank"><img src="https://image.flaticon.com/icons/png/512/59/59439.png" style="width:40px;height:40px;" type="button"></img></a> 
-        <a href="/dashboard">Dashboard</a>
+            <a href="https://www.facebook.com/Salon-Fryzjerski-Paulina-653797101462403" target="_blank"><img src="https://image.flaticon.com/icons/png/512/59/59439.png" style="width:32px;height:32px;" type="button"></img>acebook</a> 
+            <a href="/dashboard">Dashboard</a>
         </h6>
-        
-</div>
+    </div>
 </footer>
 </#macro>
 
