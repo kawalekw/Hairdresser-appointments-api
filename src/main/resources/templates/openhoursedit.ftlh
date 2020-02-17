@@ -3,6 +3,7 @@
 <#macro page_body>
     <div class="card">
     <div class="card-header"><h1>Godziny otwarcia</h1></card>
+    <div class="card-body">
     <form action="/openhours/edit" method="post" class="form-control">
         <ul class="list-group">
             <li class="list-group-item">Niedziela:
@@ -43,6 +44,7 @@
         <button type="Submit">Zapisz</button>
     </from>
     <br>
+    </div>
     </div>
 </#macro>
 
