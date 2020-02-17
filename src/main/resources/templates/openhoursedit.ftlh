@@ -2,7 +2,7 @@
 
 <#macro page_body>
     <div class="card">
-    <div class="card-header">Godziny otwarcia</div>
+    <div class="card-header"><h2>Godziny otwarcia</h2></div>
     <div class="card-body">
         <form action="/openhours/edit" method="post" class="form-control">
          <ul class="list-group">

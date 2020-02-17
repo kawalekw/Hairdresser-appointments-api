@@ -3,7 +3,7 @@
 <#macro page_body>
     <div class="card">
     <div class="card-header">
-    <h4>Dzień ${day.date}</h4>
+    <h2>Dzień ${day.date}</h2>
     </div>
     <div class="card-body">
     <ul class="list-group">

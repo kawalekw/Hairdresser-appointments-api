@@ -5,7 +5,7 @@
     <br>
     <div class="col-sm-10 col-lg-8 mx-auto">
         <div class="card">
-            <div class="card-header">Salon xD</div>
+            <div class="card-header"><h2>Salon xD</h2></div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-12 col-lg-6">

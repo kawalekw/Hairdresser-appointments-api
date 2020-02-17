@@ -3,7 +3,7 @@
 <#macro page_body>
 <div class="container-fluid text-center text-md-left">
     <div class="card">
-    <div class="card-header">Dodaj nową usługę</div>
+    <div class="card-header"><h2>Dodaj nową usługę</h2></div>
     <div class="card-body">
 
         <form action="/services" method="POST" class="form-control">
