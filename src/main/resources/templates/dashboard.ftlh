@@ -24,11 +24,6 @@
     <thead class="thead-dark">
         <tr>
             <#list week as day>
-            <th class="text-center"><a class="btn btn-primary" href="/day/${day.date}">edytuj</a></th>
-            </#list>
-        </tr>
-        <tr>
-            <#list week as day>
                 <th>${day.date.dayOfWeek}</th>
             </#list>
         </tr>
@@ -57,6 +52,11 @@
                     </#if>
             </th>
             </#list>
+        </tr>
+        <tr class="bg-dark">
+                    <#list week as day>
+                    <td class="text-center"><a class="text-white navbar-brand" href="/day/${day.date}">EDYTUJ</a></td>
+                    </#list>
         </tr>
     </tbody>
     </table>
