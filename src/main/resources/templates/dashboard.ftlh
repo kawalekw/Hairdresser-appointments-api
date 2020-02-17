@@ -2,33 +2,29 @@
 
 <#macro page_body>
 <div class="container-fluid text-center text-md-left">
-    <h1>Dashboard</h1>
-    <ul>
-        <#list week as day>
-            <li>
-                ${day.date} ${day.date.dayOfWeek} <a href="/day/${day.date}">edytuj</a><br>
-                ${day.fromTo}   
-                <#if day.appointments??>
-                <ul>
-                    <#list day.appointments as app>
-                        <li>${app.fromTo} - ${app.name} - ${app.service.name}</li>
-                    </#list>
-                </ul>
-                </#if>
-            </li>
-        </#list>
-    </ul>
-    
+  <div class="col mx-auto">
+    <div class="card">
+
+   <div class="card-header"><h2>Dashboard</h2></div>
+   <div class="card-body">
     <!--nawigacja-->
-    <a href="/dashboard/${dmw}"><<</a>
-    <a href="/dashboard/${dmd}"><</a>
-    <a href="/dashboard/${dpd}">></a>
-    <a href="/dashboard/${dpw}">>></a>
-    
-    <table border="1">
+      <div class="row">
+      <div class="col text-left">
+      <a class="btn btn-primary" href="/dashboard/${dmw}">tydzień w tył</a>
+      <a class="btn btn-primary" href="/dashboard/${dmd}">dzień w tył</a>
+      </div>
+      <div class="col text-right">
+      <a class="btn btn-primary" href="/dashboard/${dpd}">dzień w przód</a>
+      <a class="btn btn-primary" href="/dashboard/${dpw}">tydzień w przód</a>
+      </div>
+      </div>
+
+    <div class="table-responsive">
+    <table class="table" border="1">
+    <thead class="thead-dark">
         <tr>
             <#list week as day>
-                <td>${day.date.dayOfWeek}</td>
+                <th>${day.date.dayOfWeek}</th>
             </#list>
         </tr>
         <tr>
@@ -36,26 +32,38 @@
                 <th>${day.date}</th>
             </#list>
         </tr>
+
         <tr>
             <#list week as day>
                 <th>${day.fromTo}</th>
             </#list>
         </tr>
+    </thead>
+    <tbody>
         <tr>
             <#list week as day>
-            <td>
+            <th>
                 <#if day.appointments??>
-                    <ul>
+
                         <#list day.appointments as app>
-                            <li>${app.fromTo} <br> ${app.name} <br> ${app.service.name}</li>
+                           <li class="list-group-item"> ${app.fromTo} <br> ${app.name} <br> ${app.service.name}</li>
                         </#list>
-                    </ul>
+
                     </#if>
-                </td>
+            </th>
             </#list>
         </tr>
-    </table>
+         </tbody>
+        <thead class="thead-dark">
+        <tr>
+                    <#list week as day>
+                    <th class="text-center"><a class="text-white" href="/day/${day.date}">EDYTUJ</a></th>
+                    </#list>
+        </tr>
+        </thead>
 
+    </table>
+    </div>
     <br>
     <div>
        Ustawiena:
@@ -65,6 +73,9 @@
            <li><a href="/clients">Klienci</a></li>
         </ul
     </div>
+</div>
+</div>
+</div>
 </div>
 </#macro>
 

@@ -5,7 +5,7 @@
     <br>
     <div class="col col-sm-8 col-md-6 col-lg-4 col-xl-4 mx-auto">
         <div class="card" style="max-width:480px"> 
-            <div class="card-header">Rejestracja</div>
+            <div class="card-header"><h2>Rejestracja</h2></div>
             <div class="card-body">   
                     <form action="" method="post">
                         <input class="form-control" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
