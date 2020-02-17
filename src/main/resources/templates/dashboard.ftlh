@@ -53,12 +53,15 @@
             </th>
             </#list>
         </tr>
-        <tr class="bg-dark">
+         </tbody>
+        <thead class="thead-dark">
+        <tr>
                     <#list week as day>
-                    <td class="text-center"><a class="text-white navbar-brand" href="/day/${day.date}">EDYTUJ</a></td>
+                    <th class="text-center"><a class="text-white" href="/day/${day.date}">EDYTUJ</a></th>
                     </#list>
         </tr>
-    </tbody>
+        </thead>
+
     </table>
     </div>
     <br>
