@@ -2,10 +2,10 @@
 
 <#macro page_body>
     <div class="card">
-    <div class="card-header"><h1>Godziny otwarcia</h1></card>
+    <div class="card-header">Godziny otwarcia</div>
     <div class="card-body">
-    <form action="/openhours/edit" method="post" class="form-control">
-        <ul class="list-group">
+        <form action="/openhours/edit" method="post" class="form-control">
+         <ul class="list-group">
             <li class="list-group-item">Niedziela:
                 <input type="text" class="hourInput" name="from[]" value="${openhours.fromStr(0)}">
                 <input type="text" class="hourInput" name="to[]" value="${openhours.toStr(0)}"></li>
@@ -35,15 +35,15 @@
                 <input type="text" class="hourInput" name="to[]" value="${openhours.toStr(6)}">
             </li>
             
-        </ul>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-        <br>
-        Obowiązuje od: <input type="text" name="appliesfrom" value="${appliesfrom}">
-        <br>
-        <br>
-        <button type="Submit">Zapisz</button>
-    </from>
-    <br>
+            </ul>
+                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                <br>
+                Obowiązuje od: <input type="text" name="appliesfrom" value="${appliesfrom}">
+                    <br>
+                 <br>
+                 <button type="Submit">Zapisz</button>
+        </from>
+         <br>
     </div>
     </div>
 </#macro>

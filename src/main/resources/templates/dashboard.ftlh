@@ -8,16 +8,23 @@
    <div class="card-header">Dashboard</div>
    <div class="card-body">
     <!--nawigacja-->
-    <a href="/dashboard/${dmw}"><<</a>
-    <a href="/dashboard/${dmd}"><</a>
-    <a href="/dashboard/${dpd}">></a>
-    <a href="/dashboard/${dpw}">>></a>
-    
+      <div class="row">
+      <div class="col text-left">
+      <a class="btn btn-primary" href="/dashboard/${dmw}">tydzień w tył</a>
+      <a class="btn btn-primary" href="/dashboard/${dmd}">dzień w tył</a>
+      </div>
+      <div class="col text-right">
+      <a class="btn btn-primary" href="/dashboard/${dpd}">dzień w przód</a>
+      <a class="btn btn-primary" href="/dashboard/${dpw}">tydzień w przód</a>
+      </div>
+      </div>
+
+    <div class="table-responsive">
     <table class="table" border="1">
     <thead class="thead-dark">
         <tr>
             <#list week as day>
-            <th><a href="/day/${day.date}">edytuj</a></th>
+            <th class="text-center"><a class="btn btn-primary" href="/day/${day.date}">edytuj</a></th>
             </#list>
         </tr>
         <tr>
@@ -53,7 +60,7 @@
         </tr>
     </tbody>
     </table>
-
+    </div>
     <br>
     <div>
        Ustawiena:
