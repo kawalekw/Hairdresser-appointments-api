@@ -15,7 +15,7 @@
             <input type="submit" value="Dodaj">
         </form>
         <br>
-        Lista usług:
+            Lista usług:
         <ul>
             <#list services as service>
                 <li>${service.name} - ${service.duration}min <a href="/services/delete/${service.id}">X</a></li>
