@@ -2,11 +2,15 @@
 
 <#macro page_body>
 <div class="container-fluid text-center text-md-left">
-    <div>
-        Dodaj nową usługę
-        <form action="/services" method="POST">
-            Nazwa usługi: <input type="text" name="name"><br>
-            Czas trwania: <input type="decimal" name="duration"><br>
+    <div class="card">
+    <div class="card-header">Dodaj nową usługę</div>
+    <div class="card-body">
+
+        <form action="/services" method="POST" class="form-control">
+            <label for="username">Nazwa usługi:</label>
+            <input type="text" class="form-control" id="name" name="name"/><br>
+            <label for="duration">Czas trwania:</label>
+            <input type="decimal" class="form-control" id="duration" name="duration"/><br>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             <input type="submit" value="Dodaj">
         </form>
