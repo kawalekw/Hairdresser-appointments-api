@@ -84,4 +84,9 @@ public class WorkDay {
             return appointments.stream().sorted(Comparator.comparing(Appointment::getStartsAt)).collect(Collectors.toList());
         return null;
     }
+
+    public String getDayName(){
+        String[] names={"Niedziela","Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota"};
+        return names[this.date.getDayOfWeek().getValue()%7];
+    }
 }

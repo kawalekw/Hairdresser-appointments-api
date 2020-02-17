@@ -24,7 +24,7 @@
                             <thead class="thead-dark">
                             <tr>
                                 <#list week as day>
-                                    <th>${day.date.dayOfWeek}</th>
+                                    <th>${day.dayName}</th>
                                 </#list>
                             </tr>
                             <tr>
@@ -32,7 +32,6 @@
                                     <th>${day.date}</th>
                                 </#list>
                             </tr>
-
                             <tr>
                                 <#list week as day>
                                     <th>${day.fromTo}</th>
@@ -44,11 +43,9 @@
                                 <#list week as day>
                                     <th>
                                         <#if day.appointments??>
-
                                             <#list day.appointments as app>
                                                 <li class="list-group-item"> ${app.fromTo} <br> ${app.name} <br> ${app.service.name}</li>
                                             </#list>
-
                                         </#if>
                                     </th>
                                 </#list>
@@ -61,7 +58,6 @@
                                 </#list>
                             </tr>
                             </thead>
-
                         </table>
                     </div>
                     <br>
