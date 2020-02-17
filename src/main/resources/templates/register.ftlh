@@ -1,12 +1,12 @@
 <#include "base.ftlh">
 
 <#macro page_body>
- <div class="container-fluid text-center text-md-left">
-    <br>
-    <div class="col col-sm-8 col-md-6 col-lg-4 col-xl-4 mx-auto">
-        <div class="card" style="max-width:480px"> 
-            <div class="card-header"><h2>Rejestracja</h2></div>
-            <div class="card-body">   
+    <div class="container-fluid text-center text-md-left">
+        <br>
+        <div class="col col-sm-8 col-md-6 col-lg-4 col-xl-4 mx-auto">
+            <div class="card" style="max-width:480px">
+                <div class="card-header"><h2>Rejestracja</h2></div>
+                <div class="card-body">
                     <form action="" method="post">
                         <input class="form-control" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         Wybierz dzień:
@@ -28,18 +28,18 @@
                             <option></option>
                         </select>
                         <br>
-                        Imie i nazwisko klienta: 
+                        Imie i nazwisko klienta:
                         <input class="form-control" type="text" name="name"/>
                         <br>
-                        Nr telefonu: 
+                        Nr telefonu:
                         <input class="form-control" type="text" name="phone"/>
                         <br>
                         <button button class="btn btn-primary btn-block" type="submit">Zarejestruj</button>
                     </form>
-            </div>        
-        </div>           
-    </div>               
-</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </#macro>
 
 <@display_page/>

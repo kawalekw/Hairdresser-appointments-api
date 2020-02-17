@@ -9,3 +9,6 @@ body  {
 html {
     min-height: 100%;
 }
+.hourInput{
+    width: 80px;
+}
