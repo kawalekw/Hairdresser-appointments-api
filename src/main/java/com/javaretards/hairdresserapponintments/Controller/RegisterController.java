@@ -41,6 +41,7 @@ public class RegisterController {
     public String registerFormAction(Model model){
         LocalDate date = LocalDate.now();
         List<WorkDay> days = new ArrayList<>();
+        List<WorkDay> disabledDays = new ArrayList<>();
         for(int i=0;i<90;i++){
             LocalDate cache = date.plusDays(i);
             Optional<WorkDay> cacheDay = wdr.findByDate(cache);
