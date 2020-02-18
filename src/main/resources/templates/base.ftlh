@@ -15,6 +15,12 @@
     <script src="/js/main.js"></script>
     <script src="/js/jquery.validate.js"></script>
     <script src="/js/localization/messages_pl.js"></script>
+
+    <!--datepicker-->
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </#macro>
 

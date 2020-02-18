@@ -10,6 +10,23 @@
                     <form action="" method="post">
                         <input class="form-control" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         Wybierz dzień:
+                        <input id="datepicker" />
+                        <br>
+                        <script>
+                            $(document).ready(function() {
+                                let mindate=new Date();
+                                mindate.setDate(mindate.getDate()-1);
+                                $('#datepicker').datepicker({
+                                    uiLibrary: 'bootstrap4',
+                                    format: "yyyy-mm-dd",
+                                    modal: true,
+                                    minDate: mindate,
+                                });
+                            });
+                        </script>
+
+
+                        Wybierz dzień:
                         <select class="form-control" id="daySelect" name="datestr">
                             <#list days as day>
                                 <#if day.open><option value="${day.date}">${day.date}</option></#if>
