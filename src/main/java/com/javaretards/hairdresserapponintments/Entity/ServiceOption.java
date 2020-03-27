@@ -32,4 +32,5 @@ public class ServiceOption {
         this.duration=duration;
         this.deleted=false;
     }
+    
 }

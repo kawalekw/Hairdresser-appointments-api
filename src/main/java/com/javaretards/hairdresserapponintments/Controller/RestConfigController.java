@@ -6,6 +6,7 @@ import com.javaretards.hairdresserapponintments.Entity.WorkDay;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
 import com.javaretards.hairdresserapponintments.Repository.WorkDayRepository;
 import com.javaretards.hairdresserapponintments.Service.ScheduleService;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -76,6 +77,11 @@ public class RestConfigController {
         }
         else
             return new ArrayList<String>();
-        return ss.getScheduleoptions(wd, so.getDuration());   
+        return ss.getScheduleoptions(wd, so.getDuration());
+    }
+
+    @GetMapping(value = "/api/serviceoptions")
+    public Iterable<ServiceOption> getServiceOptions(){
+        return sr.findAll();
     }
 }

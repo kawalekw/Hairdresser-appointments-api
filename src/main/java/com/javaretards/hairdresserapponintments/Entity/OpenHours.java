@@ -1,5 +1,7 @@
 package com.javaretards.hairdresserapponintments.Entity;
 
+import lombok.Getter;
+
 import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
