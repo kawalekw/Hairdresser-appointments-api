@@ -36,7 +36,7 @@ public class DataLoader implements ApplicationRunner{
             sr.save(new ServiceOption("Regeneracja",120));
             sr.save(new ServiceOption("Trwała ondulacja",120));
             sr.save(new ServiceOption("Prostowanie keratynowe",240));
-            sr.save(new ServiceOption("Upięcie okolicznościowe ",90));
+            sr.save(new ServiceOption("Upięcie okolicznościowe",90));
         }
         if(!cr.findByPhone("0").isPresent()){
             cr.save(new Client("0")); //default client

@@ -79,9 +79,4 @@ public class RestConfigController {
             return new ArrayList<String>();
         return ss.getScheduleoptions(wd, so.getDuration());
     }
-
-    @GetMapping(value = "/api/serviceoptions")
-    public Iterable<ServiceOption> getServiceOptions(){
-        return sr.findAll();
-    }
 }
