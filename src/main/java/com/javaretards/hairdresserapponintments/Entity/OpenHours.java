@@ -98,6 +98,14 @@ public class OpenHours {
         return id;
     }
 
+    public int[] getOpenFrom() {
+        return openFrom;
+    }
+
+    public int[] getOpenTo() {
+        return openTo;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
