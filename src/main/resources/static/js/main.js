@@ -10,7 +10,7 @@ $( document ).ready(function() {
         }
         if (appDate) {
             $.ajax({
-                url: "/api/schedule/id/" + appDate + "/" + $("#serviceSelect").val(),
+                url: "/api/schedule/" + appDate + "/" + $("#serviceSelect").val(),
                 method: "get",
                 contentType: 'application/json',
                 dataType: 'json',

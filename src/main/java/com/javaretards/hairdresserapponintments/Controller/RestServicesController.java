@@ -14,12 +14,12 @@ public class RestServicesController {
     @Autowired
     ServiceRepository sr;
 
-    @GetMapping(value = "/api/serviceoptions")
+    @GetMapping(value = "/api/services")
     public Iterable<ServiceOption> getServiceOptions(){
-        return sr.findAll();
+        return sr.findByDeletedFalse();
     }
 
-    @GetMapping(value = "/api/serviceoptions/{id}")
+    @GetMapping(value = "/api/services/{id}")
     public Optional<ServiceOption> getServiceOption(@PathVariable(name = "id") Long id){
         return sr.findById(id);
     }

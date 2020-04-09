@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +32,7 @@ public class Client {
     @Column(unique=true)
     private String phone;
     private boolean blocked;
-    //test
+    @JsonIgnore
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private List<Appointment> appointments;
 
@@ -52,7 +54,7 @@ public class Client {
             return appointments.stream().sorted(Comparator.comparing(Appointment::getStartsAt)).collect(Collectors.toList());
         return null;
     }
-    
+    @JsonIgnore
     public Appointment getLastAppointment(){
         return appointments.stream().reduce((a,b) -> b).orElse(null);
     }

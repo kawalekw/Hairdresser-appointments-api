@@ -120,7 +120,7 @@ public class DayController {
     }
     
     @RequestMapping(value = "/disappoint/{id}", method = RequestMethod.GET)
-    public String appointFormAction(RedirectAttributes ratt, @PathVariable("id") Long id){
+    public String disAppointFormAction(RedirectAttributes ratt, @PathVariable("id") Long id){
         Appointment ap;
         Optional<Appointment> oap = ar.findById(id);
         if(oap.isPresent())

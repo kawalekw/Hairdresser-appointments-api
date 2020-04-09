@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,6 +30,7 @@ public class Appointment {
     private ServiceOption service;
     private int startsAt;
     private String name;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "day_id")
     private WorkDay day;
