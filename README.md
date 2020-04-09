@@ -13,7 +13,10 @@ Przyjmuje: nic,
 Zwraca: Iterable\<ServiceOptions>
 ### /api/services/{id} 
 ##### GET - pobiera jedną usługę
-Przyjmuje: id, Zwraca: Optional\<ServiceOptions>
+Przyjmuje: id, Zwraca: ServiceOptions
+
+##### DELETE - usuwa wybraną usługę :lock:
+Przyjmuje: id, Zwraca: StringResponse
 
 ### /api/openhours
 ##### GET - pobiera wszystkie definicje godzin otwarcia
