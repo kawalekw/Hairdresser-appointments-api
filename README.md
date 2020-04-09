@@ -14,7 +14,8 @@ Zwraca: Iterable\<ServiceOptions>
 ### /api/services/{id} 
 ##### GET - pobiera jedną usługę
 Przyjmuje: id, Zwraca: ServiceOptions
-
+##### POST - dodaje nową usługę :lock:
+Przyjnuje: JSON - ServiceOption, Zwraca: ServiceOption
 ##### DELETE - usuwa wybraną usługę :lock:
 Przyjmuje: id, Zwraca: StringResponse
 
