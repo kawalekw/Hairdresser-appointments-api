@@ -13,9 +13,9 @@ public class HairdresserApponintmentsApplication {
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new JwtFilter());
         registrationBean.addUrlPatterns("/api/*");
-        registrationBean.addInitParameter("GET","(whoami(/?)|dashboard(/[0-9\\-]+)?)");
-        registrationBean.addInitParameter("POST","(services(/)?|openhours(/)?)");  //(services(/\d+)?)
-        registrationBean.addInitParameter("DELETE","(services/\\d+)");
+        registrationBean.addInitParameter("GET","(whoami|dashboard(/[0-9\\-]+)?)");
+        registrationBean.addInitParameter("POST","(services|openhours)");  //(services(/\d+)?)
+        registrationBean.addInitParameter("DELETE","(services/\\d+|openhours/\\d+)");
         return registrationBean;
     }
     public static void main(String[] args) {

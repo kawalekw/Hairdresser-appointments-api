@@ -1,12 +1,16 @@
 package com.javaretards.hairdresserapponintments.Controller;
 
 import com.javaretards.hairdresserapponintments.Entity.OpenHours;
+import com.javaretards.hairdresserapponintments.Entity.StringResponse;
 import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.Optional;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 public class RestOpenHoursController {
@@ -19,8 +23,11 @@ public class RestOpenHoursController {
     }
 
     @GetMapping(value = "/api/openhours/{id}")
-    public Optional<OpenHours> getAllOpenHoursById(@PathVariable(name = "id") Long id){
-        return ohr.findById(id);
+    public OpenHours getAllOpenHoursById(@PathVariable(name = "id") Long id){
+        Optional<OpenHours> ooh = ohr.findById(id);
+        if(!ooh.isPresent())
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
+        return ooh.get();
     }
 
     @GetMapping(value = "/api/openhours/recent")
@@ -30,5 +37,14 @@ public class RestOpenHoursController {
     @PostMapping(value = "/api/openhours")
     public OpenHours addNewOpenHours(@RequestBody OpenHours newOpenHours){
         return ohr.save(newOpenHours);
+    }
+    @DeleteMapping(value = "/api/openhours/{id}")
+    public StringResponse deleteOpenHours(@PathVariable("id") Long id){
+        Optional<OpenHours> ooh = ohr.findById(id);
+        if(!ooh.isPresent())
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
+        OpenHours oh = ooh.get();
+        ohr.delete(oh);
+        return new StringResponse("deleted");
     }
 }

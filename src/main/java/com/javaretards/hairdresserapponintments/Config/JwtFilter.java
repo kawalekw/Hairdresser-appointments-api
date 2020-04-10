@@ -36,9 +36,9 @@ public class JwtFilter implements Filter {
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
             chain.doFilter(req, res);
-        } else if (("GET".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+getMatcher)) ||
-                ("POST".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+postMatcher)) ||
-                ("DELETE".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+deleteMatcher))
+        } else if (("GET".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+getMatcher+"(/)?")) ||
+                ("POST".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+postMatcher+"(/)?")) ||
+                ("DELETE".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+deleteMatcher+"(/)?"))
         ){
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 throw new ServletException("Missing or invalid Authorization header");

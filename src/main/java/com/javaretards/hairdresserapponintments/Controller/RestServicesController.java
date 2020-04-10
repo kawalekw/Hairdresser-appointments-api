@@ -34,6 +34,7 @@ public class RestServicesController {
     public ServiceOption addService(@RequestBody ServiceOption newService){
         return sr.save(newService);
     }
+
     @DeleteMapping(value = "/api/services/{id}")
     public StringResponse deleteService(@PathVariable("id") Long id){
         Optional<ServiceOption> osr=sr.findById(id);

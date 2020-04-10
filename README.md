@@ -39,7 +39,7 @@ Przyjmuje: JSON - OpenHours, Zwraca: Obiekt Openhours
 ```
 ### /api/openhours/{id}
 ##### GET - pobiera jedną definicje godzin otwarcia
-Przyjmuje: id, Zwraca: Optional\<ServiceOptions>
+Przyjmuje: id, Zwraca: ServiceOptions
 ##### DELETE - usuwa wybraną definicję :lock:
 Przyjmuje: id, Zwraca: StringResponse
 ### /api/openhours/recent
