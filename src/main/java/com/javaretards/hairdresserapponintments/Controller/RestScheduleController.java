@@ -21,7 +21,7 @@ import com.javaretards.hairdresserapponintments.Repository.OpenHoursRepository;
  * @author mateusz
  */
 @RestController
-public class RestConfigController {
+public class RestScheduleController {
     @Autowired ServiceRepository sr;
     @Autowired WorkDayRepository wdr;
     @Autowired OpenHoursRepository ohr;
@@ -54,4 +54,7 @@ public class RestConfigController {
             return new ArrayList<String>();
         return ss.getScheduleoptions(wd, so.getDuration());
     }
+    //TODO: register by client
+    //TODO: register by admin
+    //TODO: delete appointment
 }

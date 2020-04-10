@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.servlet.ServletException;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -39,7 +40,9 @@ public class RestOpenHoursController {
         return ohr.save(newOpenHours);
     }
     @DeleteMapping(value = "/api/openhours/{id}")
-    public StringResponse deleteOpenHours(@PathVariable("id") Long id){
+    public StringResponse deleteOpenHours(@PathVariable("id") Long id) throws ServletException {
+        if(id==1)
+            throw new ServletException("Can't delete original definition");
         Optional<OpenHours> ooh = ohr.findById(id);
         if(!ooh.isPresent())
             throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");

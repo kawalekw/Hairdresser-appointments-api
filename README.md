@@ -55,12 +55,22 @@ Przyjmuje: nic, Zwraca: ServiceOptions
 ##### GET - pobiera wolne godziny do rejestracji 
 Przyjmuje: date - data w formacie YYYY-MM-DD, id - id usługi, Zwraca: Iterable\<String>
 
-### /api/whoami :lock:
-##### GET - pobiera username zalogowanego użytkownika
+### /api/whoami 
+##### GET - pobiera username zalogowanego użytkownika :lock:
 Przyjmuje: nic, Zwraca: StringResponse z loginem
 
-### /api/dashboard/{date} :lock:
-##### GET - pobiera tydzień od podanej daty
+### /api/dashboard/{date} 
+##### GET - pobiera tydzień od podanej daty :lock:
 Przyjmuje: opcjonalnie date, w przypadku braku lub błedu parsowania zwróci tydziń od dziś, Zwraca: Iterable\<WorkDay>
 
-
+### /api/day/{date}
+##### GET - pobiera dzień :lock:
+Przyjmuje: date, Zwraca: WorkDay
+##### PATCH - zmienia godziny otwarcia w tym dniu :lock:
+Przyjmuje: date i JSON z nowymi gozinami, Zwraca: WorkDay
+```
+{
+	"openFrom":300,
+	"openTo":600
+}
+```

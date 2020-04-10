@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,6 +43,10 @@ public class WorkDay {
         this.openFrom = openFrom;
         this.openTo = openTo;
     }
+    public WorkDay(int openFrom, int openTo) {
+        this.openFrom = openFrom;
+        this.openTo = openTo;
+    }
     
     public boolean isOpen(){
         return (openFrom<openTo);
@@ -59,11 +65,13 @@ public class WorkDay {
     public String getOpenToStr(){
         return minToHours(openTo);
     }
-    
+
+    @JsonIgnore
     public void setOpenFromStr(String hours){
         openFrom=hoursToMin(hours);
     }
-    
+
+    @JsonIgnore
     public void setOpenToStr(String hours){
         openTo=hoursToMin(hours);
     }
@@ -86,7 +94,10 @@ public class WorkDay {
     }
 
     public String getDayName(){
-        String[] names={"Niedziela","Poniedziałek","Wtorek","Środa","Czwartek","Piątek","Sobota"};
-        return names[this.date.getDayOfWeek().getValue()%7];
+        if(this.date!=null) {
+            String[] names = {"Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota"};
+            return names[this.date.getDayOfWeek().getValue() % 7];
+        }
+        return "not set";
     }
 }

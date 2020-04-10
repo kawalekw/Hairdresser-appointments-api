@@ -10,13 +10,14 @@ import java.io.IOException;
 
 public class JwtFilter implements Filter {
 
-    private String getMatcher, postMatcher, deleteMatcher;
+    private String getMatcher, postMatcher, deleteMatcher,patchMatcher;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         getMatcher=filterConfig.getInitParameter("GET");
         postMatcher=filterConfig.getInitParameter("POST");
         deleteMatcher=filterConfig.getInitParameter("DELETE");
+        patchMatcher=filterConfig.getInitParameter("PATCH");
     }
 
     @Override
@@ -34,9 +35,11 @@ public class JwtFilter implements Filter {
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
             chain.doFilter(req, res);
-        } else if (("GET".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+getMatcher+"(/)?")) ||
+        } else if (
+                ("GET".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+getMatcher+"(/)?")) ||
                 ("POST".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+postMatcher+"(/)?")) ||
-                ("DELETE".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+deleteMatcher+"(/)?"))
+                ("DELETE".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+deleteMatcher+"(/)?")) ||
+                ("PATCH".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+patchMatcher+"(/)?") )
         ){
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 throw new ServletException("Missing or invalid Authorization header");
