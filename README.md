@@ -9,22 +9,39 @@ Przyjmuje: parametry username i password, Zwraca: token JWT
 
 ### /api/services
 ##### GET - pobiera wszystkie usługi
-Przyjmuje: nic,
-Zwraca: Iterable\<ServiceOptions>
+Przyjmuje: nic, Zwraca: Iterable\<ServiceOptions>
+##### POST - dodaje nową usługę :lock:
+Przyjnuje: JSON - ServiceOption, Zwraca: ServiceOption
+```
+{
+    "name": "Walenie wiadra",
+    "duration": 20
+}
+```
 ### /api/services/{id} 
 ##### GET - pobiera jedną usługę
 Przyjmuje: id, Zwraca: ServiceOptions
-##### POST - dodaje nową usługę :lock:
-Przyjnuje: JSON - ServiceOption, Zwraca: ServiceOption
+
 ##### DELETE - usuwa wybraną usługę :lock:
 Przyjmuje: id, Zwraca: StringResponse
 
 ### /api/openhours
 ##### GET - pobiera wszystkie definicje godzin otwarcia
 Przyjmuje: nic, Zwraca: Iterable\<ServiceOptions>
+##### POST - dodaje nową definicję godzin otwarcia :lock:
+Przyjmuje: JSON - OpenHours, Zwraca: Obiekt Openhours
+```
+{
+ 	"appliesFrom": "2020-04-18",
+ 	"openFrom": [0,0,0,0,0,0,0],'
+ 	"openTo": [0,0,0,0,0,0,0]
+ } 
+```
 ### /api/openhours/{id}
 ##### GET - pobiera jedną definicje godzin otwarcia
 Przyjmuje: id, Zwraca: Optional\<ServiceOptions>
+##### DELETE - usuwa wybraną definicję :lock:
+Przyjmuje: id, Zwraca: StringResponse
 ### /api/openhours/recent
 ##### GET - pobiera aktualnie obowiązującą (nie najnowszą) definicje godzin otwarcia
 Przyjmuje: nic, Zwraca: ServiceOptions

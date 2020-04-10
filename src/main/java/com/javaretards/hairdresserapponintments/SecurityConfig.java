@@ -42,6 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     public void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests().antMatchers("/dashboard/**","/services/**","/openhours/**","/clients/**","/day/**").hasRole("ADMIN")
                 .and().formLogin().loginPage("/login").permitAll();
+
         http.csrf().requireCsrfProtectionMatcher(new AndRequestMatcher(CsrfFilter.DEFAULT_CSRF_MATCHER, new RegexRequestMatcher("^(?!/api/)", null)));
     }
 }

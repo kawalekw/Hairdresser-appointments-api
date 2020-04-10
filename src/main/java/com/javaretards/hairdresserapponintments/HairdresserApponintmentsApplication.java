@@ -12,9 +12,10 @@ public class HairdresserApponintmentsApplication {
     public FilterRegistrationBean jwtFilter() {
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new JwtFilter());
-        registrationBean.addUrlPatterns("/api/serviceoptions");
-        registrationBean.addUrlPatterns("/api/whoami");
-        registrationBean.addUrlPatterns("/api/dashboard/*");
+        registrationBean.addUrlPatterns("/api/*");
+        registrationBean.addInitParameter("GET","(whoami(/?)|dashboard(/[0-9\\-]+)?)");
+        registrationBean.addInitParameter("POST","(services(/)?|openhours(/)?)");  //(services(/\d+)?)
+        registrationBean.addInitParameter("DELETE","(services/\\d+)");
         return registrationBean;
     }
     public static void main(String[] args) {

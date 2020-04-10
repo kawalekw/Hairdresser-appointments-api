@@ -7,13 +7,18 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 
 public class JwtFilter implements Filter {
 
+    private String getMatcher, postMatcher, deleteMatcher;
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        getMatcher=filterConfig.getInitParameter("GET");
+        postMatcher=filterConfig.getInitParameter("POST");
+        deleteMatcher=filterConfig.getInitParameter("DELETE");
     }
 
     @Override
@@ -30,10 +35,11 @@ public class JwtFilter implements Filter {
 
         if ("OPTIONS".equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
-
             chain.doFilter(req, res);
-        } else {
-
+        } else if (("GET".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+getMatcher)) ||
+                ("POST".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+postMatcher)) ||
+                ("DELETE".equals(request.getMethod()) && request.getRequestURI().matches("^/api/"+deleteMatcher))
+        ){
             if (authHeader == null || !authHeader.startsWith("Bearer ")) {
                 throw new ServletException("Missing or invalid Authorization header");
             }
@@ -47,5 +53,9 @@ public class JwtFilter implements Filter {
 
             chain.doFilter(req, res);
         }
+        else {
+            chain.doFilter(req, res);
+        }
+
     }
 }

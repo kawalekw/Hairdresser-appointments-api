@@ -42,7 +42,7 @@ public class RestUserController {
             throw new ServletException("invalid credentials");
         }
 
-        jwtToken = Jwts.builder().setSubject(username).claim("roles", "ROLE_ADMIN").setIssuedAt(new Date())
+        jwtToken = Jwts.builder().setSubject(username).claim("roles", "ADMIN").setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS256, secret).compact();
 
         return new StringResponse(jwtToken);

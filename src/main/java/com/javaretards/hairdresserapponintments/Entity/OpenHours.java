@@ -41,6 +41,11 @@ public class OpenHours {
         openTo = new int[]{close,close,close,close,close,close,close};
         appliesFrom = date;
     }
+    public OpenHours(LocalDate date, int[] openFrom, int[] openTo){
+        this.openFrom=openFrom;
+        this.openTo=openTo;
+        appliesFrom = date;
+    }
     
     
     public void setDay(int day, int from, int to){
