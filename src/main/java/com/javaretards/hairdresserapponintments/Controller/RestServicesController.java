@@ -4,7 +4,6 @@ import com.javaretards.hairdresserapponintments.Entity.ServiceOption;
 import com.javaretards.hairdresserapponintments.Entity.StringResponse;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 

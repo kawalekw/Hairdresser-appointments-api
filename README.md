@@ -3,8 +3,13 @@
 ## Logowanie
 ### /api/login
 ##### POST - Logowanie użytkownika
-Przyjmuje: parametry username i password, Zwraca: token JWT
-
+Przyjmuje: JSON username i password, Zwraca: token JWT
+```
+{
+	"username":"admin",
+	"password":"admin1"
+}
+```
 ## Endpointy
 
 ### /api/services

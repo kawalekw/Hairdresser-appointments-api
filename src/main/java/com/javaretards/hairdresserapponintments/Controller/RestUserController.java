@@ -1,13 +1,11 @@
 package com.javaretards.hairdresserapponintments.Controller;
 
 import com.javaretards.hairdresserapponintments.Entity.StringResponse;
+import com.javaretards.hairdresserapponintments.Entity.UserLogin;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -30,19 +28,19 @@ public class RestUserController {
     }
 
     @PostMapping(value = "api/login")
-    public StringResponse loginAction(@RequestParam("username") String username, @RequestParam("password") String password) throws ServletException {
+    public StringResponse loginAction(@RequestBody UserLogin userLogin) throws ServletException {
 
         String jwtToken;
 
-        if (username.isEmpty() || password.isEmpty()) {
+        if (userLogin.getUsername().isEmpty() || userLogin.getPassword().isEmpty()) {
             throw new ServletException("empty parameters");
         }
 
-        if (!username.equals(appusername) || !password.equals(apppassword)) {
+        if (!userLogin.getUsername().equals(appusername) || !userLogin.getPassword().equals(apppassword)) {
             throw new ServletException("invalid credentials");
         }
 
-        jwtToken = Jwts.builder().setSubject(username).claim("roles", "ADMIN").setIssuedAt(new Date())
+        jwtToken = Jwts.builder().setSubject(userLogin.getUsername()).claim("roles", "ADMIN").setIssuedAt(new Date())
                 .signWith(SignatureAlgorithm.HS256, secret).compact();
 
         return new StringResponse(jwtToken);
