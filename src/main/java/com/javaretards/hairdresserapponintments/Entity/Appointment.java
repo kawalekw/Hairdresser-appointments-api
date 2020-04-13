@@ -53,11 +53,11 @@ public class Appointment {
     public String getFromTo(){
         return minToHours(startsAt)+" - "+minToHours(startsAt+service.getDuration());
     }
-    
+    @JsonIgnore
     public int getEndsAt(){
         return this.startsAt+this.service.getDuration();
     }
-    
+    @JsonIgnore
     public String getStartsAtStr(){
         return minToHours(startsAt);
     }

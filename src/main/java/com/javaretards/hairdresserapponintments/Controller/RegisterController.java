@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -96,7 +98,7 @@ public class RegisterController {
             return "redirect:/register";
         }
         int minutes=ss.hoursToMin(hour);
-        if(minutes%5!=0 || minutes<wd.getOpenFrom() || minutes>wd.getOpenTo()-se.getDuration()){
+        if(StreamSupport.stream(ss.getScheduleoptions(wd,se.getDuration()).spliterator(), false).noneMatch(hour::equals)){
             ratt.addFlashAttribute("alert_error", "Niepoprawna godzina");
             return "redirect:/register"; 
         }
@@ -121,7 +123,6 @@ public class RegisterController {
             cl=new Client(phone);
             cr.save(cl);
         }
-        //shit roughly validated \/ add to the db \/
         ar.save(new Appointment(cl,se,minutes,name,wd));
         ratt.addFlashAttribute("alert_success", "Umówiono pomyślnie");
         return "redirect:/registered/"+phone;

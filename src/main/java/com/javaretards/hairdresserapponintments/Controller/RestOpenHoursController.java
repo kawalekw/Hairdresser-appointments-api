@@ -14,16 +14,17 @@ import java.util.Optional;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
+@RequestMapping("/api/openhours")
 public class RestOpenHoursController {
     @Autowired
     OpenHoursRepository ohr;
 
-    @GetMapping(value = "/api/openhours")
+    @GetMapping
     public Iterable<OpenHours> getAllOpenHours(){
         return ohr.findAll();
     }
 
-    @GetMapping(value = "/api/openhours/{id}")
+    @GetMapping("/{id}")
     public OpenHours getAllOpenHoursById(@PathVariable(name = "id") Long id){
         Optional<OpenHours> ooh = ohr.findById(id);
         if(!ooh.isPresent())
@@ -31,15 +32,15 @@ public class RestOpenHoursController {
         return ooh.get();
     }
 
-    @GetMapping(value = "/api/openhours/recent")
+    @GetMapping("/recent")
     public OpenHours getAllOpenHoursById(){
         return ohr.findFirstByAppliesFromBeforeOrderByAppliesFromDesc(LocalDate.now().plusDays(1)).get();
     }
-    @PostMapping(value = "/api/openhours")
+    @PostMapping
     public OpenHours addNewOpenHours(@RequestBody OpenHours newOpenHours){
         return ohr.save(newOpenHours);
     }
-    @DeleteMapping(value = "/api/openhours/{id}")
+    @DeleteMapping("/{id}")
     public StringResponse deleteOpenHours(@PathVariable("id") Long id) throws ServletException {
         if(id==1)
             throw new ServletException("Can't delete original definition");

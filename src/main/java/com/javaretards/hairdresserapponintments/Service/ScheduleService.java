@@ -15,9 +15,6 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ScheduleService {
-    public String dupa(){
-        return "dupa";
-    }
     
     public Iterable<String> getScheduleoptions(WorkDay wd, Integer duration){
         List<String> options = new ArrayList<>();
