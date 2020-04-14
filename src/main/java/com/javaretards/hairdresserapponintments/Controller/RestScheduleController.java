@@ -11,13 +11,17 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.ServletException;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 /**
  *
  * @author mateusz
  */
+@RequestMapping("/api/schedule")
 @RestController
 public class RestScheduleController {
     @Autowired ServiceRepository sr;
@@ -27,7 +31,7 @@ public class RestScheduleController {
     @Autowired ClientRepository cr;
     @Autowired AppointmentRepository ar;
 
-    @GetMapping(value = {"/api/schedule/{date}/{id}"})
+    @GetMapping(value = {"/{date}/{id}"})
     public Iterable<String> getScehuleOptionsByIdAction(@PathVariable("date") String datestr,@PathVariable(value="id") Long id){
         LocalDate date;
         try{
@@ -54,7 +58,7 @@ public class RestScheduleController {
             return new ArrayList<String>();
         return ss.getScheduleoptions(wd, so.getDuration());
     }
-    @PostMapping(value = {"/api/schedule/{operator}","/api/schedule"})
+    @PostMapping(value = {"/{operator}"})
     public Appointment register(@PathVariable(value = "operator", required = false) String operator, @RequestBody AppointmentData newApp) throws ServletException {
 
         LocalDate appDate;
@@ -110,8 +114,19 @@ public class RestScheduleController {
         
         return ar.save(app);
     }
-
-    //TODO: register by client
-    //TODO: register by admin
-    //TODO: delete appointment
+    @GetMapping(value = "/{id}")
+    public Appointment getAppointment(@PathVariable("id") Long id){
+        Optional<Appointment> oap=ar.findById(id);
+        if(!oap.isPresent())
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
+        return oap.get();
+    }
+    @DeleteMapping(value = "/{id}")
+    public StringResponse deleteAppointment(@PathVariable("id") Long id){
+        Optional<Appointment> oap=ar.findById(id);
+        if(!oap.isPresent())
+            throw new ResponseStatusException(NOT_FOUND, "Unable to find resource");
+        ar.delete(oap.get());
+        return new StringResponse("deleted");
+    }
 }

@@ -51,6 +51,13 @@ Przyjmuje: id, Zwraca: StringResponse
 ##### GET - pobiera aktualnie obowiązującą (nie najnowszą) definicje godzin otwarcia
 Przyjmuje: nic, Zwraca: ServiceOptions
 
+### /api/schedule/{id}
+##### GET - Pobiera szczegóły jednej wizyty
+Przyjmuje: id, Zwraca: Appointment
+
+##### DELETE - Usuwa wizytę :lock:
+Przyjmuje: id, Zwraca: StringResponse
+
 ### /api/schedule/client
 ##### POST - rejesrtruje klienta
 Przyjmuje: AppointentData, Zwraca: Appointment
@@ -99,3 +106,19 @@ Przyjmuje: date i JSON z nowymi gozinami, Zwraca: WorkDay
 	"openTo":600
 }
 ```
+
+### /api/clients
+##### GET - Pobiera wszystkich klientów :lock:
+Pzyjmuje: nic, Zwraca: Iterable\<Client>
+
+### /api/clients/{id}
+##### GET - Pobiera jednego klienta :lock:
+Pzyjmuje: id, Zwraca: Client
+
+### /api/clients/{id}/block
+##### POST - Blokuje klienta :lock:
+Pzyjmuje: nic, Zwraca: Client
+
+### /api/clients/{id}/unlock
+##### POST - Odblokowywuje klienta :lock:
+Pzyjmuje: nic, Zwraca: Client

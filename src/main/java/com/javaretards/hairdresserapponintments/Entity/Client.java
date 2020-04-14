@@ -58,4 +58,11 @@ public class Client {
     public Appointment getLastAppointment(){
         return appointments.stream().reduce((a,b) -> b).orElse(null);
     }
+
+    public String getLastName(){
+        Appointment ap = getLastAppointment();
+        if(ap==null)
+            return  "no name";
+        return ap.getName();
+    }
 }

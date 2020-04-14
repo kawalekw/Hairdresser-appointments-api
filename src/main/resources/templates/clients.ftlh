@@ -19,7 +19,7 @@
                 <#list clients as client>
                     <#if client.phone!="0">
                         <tr>
-                            <td> ${client.phone}</td><td><#if client.lastAppointment??>${client.lastAppointment.name}</#if></td><td><#if client.blocked><a  href="/clients/unlock/${client.id}">Odblokuj</a><#else><a href="/clients/block/${client.id}">Zablokuj</a></#if></td>
+                            <td> ${client.phone}</td><td>${client.lastName}</td><td><#if client.blocked><a  href="/clients/unlock/${client.id}">Odblokuj</a><#else><a href="/clients/block/${client.id}">Zablokuj</a></#if></td>
                         </tr>
                     </#if>
                 </#list>

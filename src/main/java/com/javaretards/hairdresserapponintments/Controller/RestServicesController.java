@@ -3,6 +3,7 @@ package com.javaretards.hairdresserapponintments.Controller;
 import com.javaretards.hairdresserapponintments.Entity.ServiceOption;
 import com.javaretards.hairdresserapponintments.Entity.StringResponse;
 import com.javaretards.hairdresserapponintments.Repository.ServiceRepository;
+import org.aspectj.lang.annotation.DeclareWarning;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -10,18 +11,18 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
-
+@RequestMapping("/api/services")
 @RestController
 public class RestServicesController {
     @Autowired
     ServiceRepository sr;
 
-    @GetMapping(value = "/api/services")
+    @GetMapping
     public Iterable<ServiceOption> getServiceOptions(){
         return sr.findByDeletedFalse();
     }
 
-    @GetMapping(value = "/api/services/{id}")
+    @GetMapping(value = "/{id}")
     public ServiceOption getServiceOption(@PathVariable(name = "id") Long id){
         Optional<ServiceOption> osr=sr.findById(id);
         if(!osr.isPresent())
@@ -29,12 +30,12 @@ public class RestServicesController {
         return osr.get();
     }
 
-    @PostMapping(value = "/api/services")
+    @PostMapping
     public ServiceOption addService(@RequestBody ServiceOption newService){
         return sr.save(newService);
     }
 
-    @DeleteMapping(value = "/api/services/{id}")
+    @DeleteMapping(value = "/{id}")
     public StringResponse deleteService(@PathVariable("id") Long id){
         Optional<ServiceOption> osr=sr.findById(id);
         if(!osr.isPresent())
